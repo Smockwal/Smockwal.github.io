@@ -1,9 +1,563 @@
-<!-- https://Smockwal.github.io -->
-
 <!DOCTYPE html>
 <html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/index.css">
+    <style></style>
+</head>
+
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+    <script src="js/utility.js"></script>
+
+    <div class="tab">
+        <button class="tablinks" onclick="set_tab(event, 'Home')" id="home_tab_btn">Home</button>
+        <button class="tablinks" onclick="set_tab(event, 'Font Texture')" id="font_texture_tab_btn">Font Texture</button>
+        <button class="tablinks" onclick="set_tab(event, 'Bitwise')" id="bitwise_tab_btn">Bitwise</button>
+    </div>
+
+    <div id="Home" class="tabcontent">
+
+        <h3>Home</h3>
+    </div>
+
+    <div id="Font Texture" class="tabcontent" style="height:100%">
+        <link rel="stylesheet" href="css/text_texture.css">
+        <!-- <h3>Text Texture</h3> -->
+
+        <div style="display: grid;height:100%">
+            <!-- font -->
+            <fieldset style="display: grid;justify-content: stretch;grid-area:1/1/2/2">
+                <legend>Font</legend>
+                <div style="display:grid;justify-content: stretch;grid-gap:5px 5px">
+
+                    <div style="grid-area:1/1/auto/auto">
+                        <label for=ft_familly>Family:</label>
+                        <input id=ft_familly list=familly_list style="width:auto">
+                    </div>
+                    <div style="grid-area:1/2/auto/auto">
+                        <label for="ft_fontsize">Size:</label>
+                        <input id="ft_fontsize" type=number max=180 min=6 step=1 style="max-width:75px" value=12>
+                    </div>
+
+                    <div style="grid-area:2/1/auto/auto">
+                        <label for="ft_script_name">Script:</label>
+                        <input id="ft_script_name" list=script_list style="width:auto" value='Basic Latin'>
+                    </div>
+
+                    <div style="grid-area:2/2/auto/auto">
+                        <a href=# id=add_scr_btn>🞣 Add</a>
+                    </div>
+
+                    <div id=scr_collection
+                        style="width:100%;max-width:480px;height:100%;border:1px solid rgb(255,255,255);border-radius:5px;grid-area:3/1/auto/3">
+                    </div>
+                </div>
+                <div style="display:grid;grid-area:3/1/auto/auto">
+                    <div style="grid-area:1/1/auto/auto">
+                        <span>Type:</span>
+                    </div>
+
+                    <div style="grid-area:1/2/auto/auto">
+                        <input id=is_number type=checkbox checked>
+                        <label for=is_number>Number</label>
+                    </div>
+                    <div style="grid-area:1/3/auto/auto">
+                        <input id=is_lower type=checkbox checked>
+                        <label for=is_lower>Lower</label>
+                    </div>
+                    <div style="grid-area:1/4/auto/auto">
+                        <input id=is_upper type=checkbox checked>
+                        <label for=is_upper>Upper</label>
+                    </div>
+                    <div style="grid-area:1/5/auto/auto">
+                        <input id=is_symbol type=checkbox checked>
+                        <label for=is_symbol>Symbol</label>
+                    </div>
+
+                    <div style="grid-area:2/1/auto/auto">
+                        <span>Style:</span>
+                    </div>
+                    <div style="grid-area:2/2/auto/auto">
+                        <input id=is_italic type=checkbox>
+                        <label for=is_italic>Italic</label>
+                    </div>
+                    <div style="grid-area:2/3/auto/auto">
+                        <input id=is_bold type=checkbox>
+                        <label for=is_bold>Bold</label>
+                    </div>
+                </div>
+                <br>
+            </fieldset>
+
+            <fieldset style="display: grid;justify-content: stretch;grid-area:2/1/3/2">
+                <!-- Decoration -->
+                <legend>Decoration:</legend>
+                <div style="display:grid;justify-content:start;grid-gap:5px 5px">
+                    <div style="grid-area:1/1/2/2">
+                        <label>Color:</label>
+                    </div>
+                    <div style="grid-area:1/2/2/3">
+                        <input id=ft_font_color type=color title='Text color' value=#ffffff style="width:75px">
+                    </div>
+                    <div style="grid-area:1/3/3/4">
+                        <input id=ft_font_akpha type=range title='Text transparency' value=1 style="width:100%" max=1
+                            min=0 step=0.01>
+                    </div>
+                    <div style="grid-area:2/1/3/2">
+                        <label>Background:</label>
+                    </div>
+                    <div style="grid-area:2/2/3/3">
+                        <input id=ft_background_color type=color title='Background color' value=#ffffff
+                            style="width:75px">
+                    </div>
+                    <div style="grid-area:2/3/3/4">
+                        <input id=ft_background_alpha type=range title='Background transparency' value=0
+                            style="width:100%" max=1 min=0 step=0.01>
+                    </div>
+                    <div style="grid-area:3/1/4/2">
+                        <input type=checkbox id=ft_is_stoked>
+                        <label for=ft_stoke>Stroked</label>
+                    </div>
+                    <div style="grid-area:3/2/4/3">
+                        <input id=ft_stoke_color type=color title='Stroke color' value=#ffffff style="width:75px">
+                    </div>
+                    <div style="grid-area:3/3/4/4">
+                        <input id=ft_stoke_size type=range title='Stroke size' value=1 style="width:100%" max=10 min=0
+                            step=1>
+                    </div>
+                    <div style="grid-area:4/1/5/2">
+                        <input type=checkbox id=ft_is_shadowed>
+                        <label for=ft_shadow>Shadowed</label>
+                    </div>
+                    <div style="grid-area:4/2/5/3">
+                        <input id=ft_shadow_color type=color title='Shadow color' value=#ffffff style="width:75px">
+                    </div>
+                    <div style="grid-area:4/3/5/4">
+                        <input id=ft_shadow_x type=range title='Offset X' value=0 max=20 min=-20 step=1>
+                        <input id=ft_shadow_y type=range title='Offset Y' value=0 max=20 min=-20 step=1>
+                    </div>
+                    <div style="grid-area:5/1/6/2">
+                        <input type=checkbox id=ft_is_glowing>
+                        <label for=ft_glowing>Glowing</label>
+                    </div>
+                    <div style="grid-area:5/2/6/3">
+                        <input id=ft_glow_color type=color title='Glow color' value=#ffffff style="width:75px">
+                    </div>
+                    <div style="grid-area:5/3/6/4">
+                        <input id=ft_glow_size type=range title='Glow distance' value=0 style="width:100%" max=20
+                            min=0 step=1>
+                    </div>
+                    <div style="grid-area:6/1/7/2">
+                        <input type=checkbox id=ft_is_blured>
+                        <label for=ft_blurred>Blurred</label>
+                    </div>
+                    <div style="grid-area:6/2/7/4">
+                        <input id=ft_blur_fuzz type=range title=Blur value=0 class="width:100%" max=20 min=0 step=1>
+                    </div>
+                    <div style="grid-area:7/1/8/2">
+                        <input type=checkbox id=ft_is_reflected>
+                        <label for=ft_reflected>Reflected</label>
+                    </div>
+                    <div style="grid-area:7/2/8/4;width:100%">
+                        <input id=ft_reflect_scale type=range title=Scale value=0 style="width:48%" max=1 min=0
+                            step=0.01>
+                        <input id=ft_reflect_alpha type=range title=Alpha value=0 style="width:48%" max=1 min=0
+                            step=0.01>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset style="display: grid;justify-content: stretch;grid-area:3/1/4/2">
+                <!-- Chars -->
+                <legend>Notecard:</legend>
+                <textarea id=ft_char_textarea readonly rows=6 style="width:100%"></textarea>
+                <div>
+                    <a href=# id=ft_char_copy_btn>📋 Copy to Clipboard</a>
+                    <a href=# id=ft_char_reset_btn>⚠️ Reset</a>
+                </div>
+            </fieldset>
+
+            <fieldset style="display: grid;justify-content: stretch;grid-area:1/2/5/30">
+
+                <legend>Texture:</legend>
+                <div style="text-align:center">
+                    <div style="white-space:nowrap;display:grid">
+                        <div style="grid-column:1">
+                            <span>Size:</span> 
+                            <select id=ft_texture_size>
+                                <option value=16>16
+                                <option value=32>32
+                                <option value=64>64
+                                <option value=128>128
+                                <option value=256 selected>256
+                                <option value=512>512
+                                <option value=1024>1024
+                            </select>
+                        </div>
+                       
+                        <a href=# id=ft_update_btn style="grid-column:3">🗘 Update</a>
+                        <div style="grid-column:4">
+                            <span>🔎 Zoom:</span>
+                            <span id=ft_zoom_btn></span>
+                        </div>
+                        <div style="grid-column:5">
+                            <input id=ft_grid_btn type=checkbox>
+                            <label for=ft_grid_btn>Show Grid</label>
+                        </div>
+                        <a href=# id=ft_save_btn style="grid-column:6" download=''>🗀 Save</a>
+                    </div>
+                    <br>
+                    <canvas id=ft_canvas></canvas>
+                </div>
+
+            </fieldset>
+        </div>
+
+        <datalist id="familly_list">
+            <option value="Arial">Arial</option>
+            <option value="Arial Black">Arial Black</option>
+            <option value="Arial Narrow">Arial Narrow</option>
+            <option value="Comic Sans MS">Comic Sans MS</option>
+            <option value="Courier">Courier</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Helvetica">Helvetica</option>
+            <option value="Impact">Impact</option>
+            <option value="Lucida Console">Lucida Console</option>
+            <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+            <option value="Tahoma">Tahoma</option>
+            <option value="Times">Times</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Trebuchet MS">Trebuchet MS</option>
+            <option value="Verdana">Verdana</option>
+            <option value="English 111 Vivace BT">English 111 Vivace BT</option>
+            <option value="GeoSlab 703 Lt BT">GeoSlab 703 Lt BT</option>
+            <option value="GeoSlab 703 XBd BT">GeoSlab 703 XBd BT</option>
+            <option value="Humanst 521 Cn BT">Humanst 521 Cn BT</option>
+        </datalist>
+
+        <datalist id="script_list">
+            <option data-range="0000—001F" value="Control character">Control character</option>
+            <option data-range="0020—007F" value="Basic Latin">Basic Latin</option>
+            <option data-range="0080—00FF" value="Latin-1 Supplement">Latin-1 Supplement</option>
+            <option data-range="0100—017F" value="Latin Extended-A">Latin Extended-A</option>
+            <option data-range="0180—024F" value="Latin Extended-B">Latin Extended-B</option>
+            <option data-range="0250—02AF" value="IPA Extensions">IPA Extensions</option>
+            <option data-range="02B0—02FF" value="Spacing Modifier Letters">Spacing Modifier Letters</option>
+            <option data-range="0300—036F" value="Combining Diacritical Marks">Combining Diacritical Marks</option>
+            <option data-range="0370—03FF" value="Greek and Coptic">Greek and Coptic</option>
+            <option data-range="0400—04FF" value="Cyrillic">Cyrillic</option>
+            <option data-range="0500—052F" value="Cyrillic Supplement">Cyrillic Supplement</option>
+            <option data-range="0530—058F" value="Armenian">Armenian</option>
+            <option data-range="0590—05FF" value="Hebrew">Hebrew</option>
+            <option data-range="0600—06FF" value="Arabic">Arabic</option>
+            <option data-range="0700—074F" value="Syriac">Syriac</option>
+            <option data-range="0750—077F" value="Arabic Supplement">Arabic Supplement</option>
+            <option data-range="0780—07BF" value="Thaana">Thaana</option>
+            <option data-range="07C0—07FF" value="NKo">NKo</option>
+            <option data-range="0800—083F" value="Samaritan">Samaritan</option>
+            <option data-range="0840—085F" value="Mandaic">Mandaic</option>
+            <option data-range="0860—086F" value="Syriac Supplement">Syriac Supplement</option>
+            <option data-range="08A0—08FF" value="Arabic Extended-A">Arabic Extended-A</option>
+            <option data-range="0900—097F" value="Devanagari">Devanagari</option>
+            <option data-range="0980—09FF" value="Bengali">Bengali</option>
+            <option data-range="0A00—0A7F" value="Gurmukhi">Gurmukhi</option>
+            <option data-range="0A80—0AFF" value="Gujarati">Gujarati</option>
+            <option data-range="0B00—0B7F" value="Oriya">Oriya</option>
+            <option data-range="0B80—0BFF" value="Tamil">Tamil</option>
+            <option data-range="0C00—0C7F" value="Telugu">Telugu</option>
+            <option data-range="0C80—0CFF" value="Kannada">Kannada</option>
+            <option data-range="0D00—0D7F" value="Malayalam">Malayalam</option>
+            <option data-range="0D80—0DFF" value="Sinhala">Sinhala</option>
+            <option data-range="0E00—0E7F" value="Thai">Thai</option>
+            <option data-range="0E80—0EFF" value="Lao">Lao</option>
+            <option data-range="0F00—0FFF" value="Tibetan">Tibetan</option>
+            <option data-range="1000—109F" value="Myanmar">Myanmar</option>
+            <option data-range="10A0—10FF" value="Georgian">Georgian</option>
+            <option data-range="1100—11FF" value="Hangul Jamo">HangulJamo</option>
+            <option data-range="1200—137F" value="Ethiopic">Ethiopic</option>
+            <option data-range="1380—139F" value="Ethiopic Supplement">Ethiopic Supplement</option>
+            <option data-range="13A0—13FF" value="Cherokee">Cherokee</option>
+            <option data-range="1400—167F" value="Unified Canadian Aboriginal Syllabics">Unified Canadian Aboriginal
+                Syllabics</option>
+            <option data-range="1680—169F" value="Ogham">Ogham</option>
+            <option data-range="16A0—16FF" value="Runic">Runic</option>
+            <option data-range="1700—171F" value="Tagalog">Tagalog</option>
+            <option data-range="1720—173F" value="Hanunoo">Hanunoo</option>
+            <option data-range="1740—175F" value="Buhid">Buhid</option>
+            <option data-range="1760—177F" value="Tagbanwa">Tagbanwa</option>
+            <option data-range="1780—17FF" value="Khmer">Khmer</option>
+            <option data-range="1800—18AF" value="Mongolian">Mongolian</option>
+            <option data-range="18B0—18FF" value="Unified Canadian Aboriginal Syllabics Extended">Unified Canadian
+                Aboriginal Syllabics Extended</option>
+            <option data-range="1900—194F" value="Limbu">Limbu</option>
+            <option data-range="1950—197F" value="Tai Le">Tai Le</option>
+            <option data-range="1980—19DF" value="New Tai Lue">New Tai Lue</option>
+            <option data-range="19E0—19FF" value="Khmer Symbols">Khmer Symbols</option>
+            <option data-range="1A00—1A1F" value="Buginese">Buginese</option>
+            <option data-range="1A20—1AAF" value="Tai Tham">Tai Tham</option>
+            <option data-range="1AB0—1AFF" value="Combining Diacritical Marks Extended">Combining Diacritical Marks
+                Extended</option>
+            <option data-range="1B00—1B7F" value="Balinese">Balinese</option>
+            <option data-range="1B80—1BBF" value="Sundanese">Sundanese</option>
+            <option data-range="1BC0—1BFF" value="Batak">Batak</option>
+            <option data-range="1C00—1C4F" value="Lepcha">Lepcha</option>
+            <option data-range="1C50—1C7F" value="Ol Chiki">Ol Chiki</option>
+            <option data-range="1C80—1C8F" value="Cyrillic Extended C">Cyrillic Extended C</option>
+            <option data-range="1CC0—1CCF" value="Sundanese Supplement">Sundanese Supplement</option>
+            <option data-range="1CD0—1CFF" value="Vedic Extensions">Vedic Extensions</option>
+            <option data-range="1D00—1D7F" value="Phonetic Extensions">Phonetic Extensions</option>
+            <option data-range="1D80—1DBF" value="Phonetic Extensions Supplement">Phonetic Extensions Supplement
+            </option>
+            <option data-range="1DC0—1DFF" value="Combining Diacritical Marks Supplement">Combining Diacritical Marks
+                Supplement</option>
+            <option data-range="1E00—1EFF" value="Latin Extended Additional">Latin Extended Additional</option>
+            <option data-range="1F00—1FFF" value="Greek Extended">Greek Extended</option>
+            <option data-range="2000—206F" value="General Punctuation">General Punctuation</option>
+            <option data-range="2070—209F" value="Superscripts and Subscripts">Superscripts and Subscripts</option>
+            <option data-range="20A0—20CF" value="Currency Symbols">Currency Symbols</option>
+            <option data-range="20D0—20FF" value="Combining Dia critical Marks for Symbols">Combining Diacritical Marks
+                for Symbols</option>
+            <option data-range="2100—214F" value="Letterlike Symbols"> Letterlike Symbols</option>
+            <option data-range="2150—218F" value="Number Forms">Number Forms</option>
+            <option data-range="2190—21FF" value="Arrows">Arrows</option>
+            <option data-range="2200—22FF" value="Mathematical Operators">Mathematical Operators</option>
+            <option data-range="2300—23FF" value="Miscellaneous Technical">Miscellaneous Technical</option>
+            <option data-range="2400—243F" value="Control Pictures">Control Pictures</option>
+            <option data-range="2440—245F" value="Optical Character Recognition">Optical Character Recognition</option>
+            <option data-range="2460—24FF" value="Enclosed Alphanumerics">Enclosed Alphanumerics</option>
+            <option data-range="2500—257F" value="Box Drawing">Box Drawing</option>
+            <option data-range="2580—259F" value="Block Elements">Block Elements</option>
+            <option data-range="25A0—25FF" value="Geometric Shapes">Geometric Shapes</option>
+            <option data-range="2600—26FF" value="Miscellaneous Symbols">Miscellaneous Symbols</option>
+            <option data-range="2700—27BF" value="Dingbats">Dingbats</option>
+            <option data-range="27C0—27EF" value="Miscellaneous Mathematical Symbols-A">Miscellaneous Mathematical
+                Symbols-A</option>
+            <option data-range="27F0—27FF" value="Supplemental Arrows-A">Supplemental Arrows-A</option>
+            <option data-range="2800—28FF" value="Braille Patterns">Braille Patterns</option>
+            <option data-range="2900—297F" value="Supplemental Arrows-B">Supplemental Arrows-B</option>
+            <option data-range="2980—29FF" value="Miscellaneous Mathematical Symbols-B">Miscellaneous Mathematical
+                Symbols-B</option>
+            <option data-range="2A00—2AFF" value="Supplemental Mathematical Operators">Supplemental Mathematical
+                Operators</option>
+            <option data-range="2B00—2BFF" value="Miscellaneous Symbols and Arrows">Miscellaneous Symbols and Arrows
+            </option>
+            <option data-range="2C00—2C5F" value="Glagolitic">Glagolitic</option>
+            <option data-range="2C60—2C7F" value="Latin Extended-C">Latin Extended-C</option>
+            <option data-range="2C80—2CFF" value="Coptic">Coptic</option>
+            <option data-range="2D00—2D2F" value="Georgian Supplement">Georgian Supplement</option>
+            <option data-range="2D30—2D7F" value="Tifinagh">Tifinagh</option>
+            <option data-range="2D80—2DDF" value="Ethiopic Extended">Ethiopic Extended</option>
+            <option data-range="2DE0—2DFF" value="Cyrillic Extended-A">Cyrillic Extended-A</option>
+            <option data-range="2E00—2E7F" value="Supplemental Punctuation">Supplemental Punctuation</option>
+            <option data-range="2E80—2EFF" value="CJK Radicals Supplement">CJK Radicals Supplement</option>
+            <option data-range="2F00—2FDF" value="Kangxi Radicals">Kangxi Radicals</option>
+            <option data-range="2FF0—2FFF" value="Ideographic Description Characters">Ideographic Description Characters
+            </option>
+            <option data-range="3000—303F" value="CJK Symbols and Punctuation">CJK Symbols and Punctuation</option>
+            <option data-range="3040—309F" value="Hiragana">Hiragana</option>
+            <option data-range="30A0—30FF" value="Katakana">Katakana</option>
+            <option data-range="3100—312F" value="Bopomofo">Bopomofo</option>
+            <option data-range="3130—318F" value="Hangul Compatibility Jamo">Hangul Compatibility Jamo</option>
+            <option data-range="3190—319F" value="Kanbun">Kanbun</option>
+            <option data-range="31A0—31BF" value="Bopomofo Extended">Bopomofo Extended</option>
+            <option data-range="31C0—31EF" value="CJK Strokes">CJK Strokes</option>
+            <option data-range="31F0—31FF" value="Katakana Phonetic Extensions">Katakana Phonetic Extensions</option>
+            <option data-range="3200—32FF" value="Enclosed CJK Letters and Months">Enclosed CJK Letters and Months
+            </option>
+            <option data-range="3300—33FF" value="CJK Compatibility">CJK Compatibility</option>
+            <option data-range="3400—4DBF" value="CJK Unified Ideographs Extension A">CJK Unified Ideographs Extension A
+            </option>
+            <option data-range="4DC0—4DFF" value="Yijing Hexagram Symbols">Yijing Hexagram Symbols</option>
+            <option data-range="4E00—9FFF" value="CJK Unified Ideographs">CJK Unified Ideographs</option>
+            <option data-range="A000—A48F" value="Yi Syllables">Yi Syllables</option>
+            <option data-range="A490—A4CF" value="Yi Radicals">Yi Radicals</option>
+            <option data-range="A4D0—A4FF" value="Lisu">Lisu</option>
+            <option data-range="A500—A63F" value="Vai">Vai</option>
+            <option data-range="A640—A69F" value="Cyrillic Extended-B">Cyrillic Extended-B</option>
+            <option data-range="A6A0—A6FF" value="Bamum">Bamum</option>
+            <option data-range="A700—A71F" value="Modifier Tone Letters">Modifier Tone Letters</option>
+            <option data-range="A720—A7FF" value="Latin Extended-D">Latin Extended-D</option>
+            <option data-range="A800—A82F" value="Syloti Nagri">Syloti Nagri</option>
+            <option data-range="A830—A83F" value="Common Indic Number Forms">Common Indic Number Forms</option>
+            <option data-range="A840—A87F" value="Phags-pa">Phags-pa</option>
+            <option data-range="A880—A8DF" value="Saurashtra">Saurashtra</option>
+            <option data-range="A8E0—A8FF" value="Devanagari Extended">Devanagari Extended</option>
+            <option data-range="A900—A92F" value="Kayah Li">Kayah Li</option>
+            <option data-range="A930—A95F" value="Rejang">Rejang</option>
+            <option data-range="A960—A97F" value="Hangul Jamo Extended-A">Hangul Jamo Extended-A</option>
+            <option data-range="A980—A9DF" value="Javanese">Javanese</option>
+            <option data-range="A9E0—A9FF" value="Myanmar Extended-B">Myanmar Extended-B</option>
+            <option data-range="AA00—AA5F" value="Cham">Cham</option>
+            <option data-range="AA60—AA7F" value="Myanmar Extended-A">Myanmar Extended-A</option>
+            <option data-range="AA80—AADF" value="Tai Viet">Tai Viet</option>
+            <option data-range="AAE0—AAFF" value="Meetei Mayek Extensions">Meetei Mayek Extensions</option>
+            <option data-range="AB00—AB2F" value="Ethiopic Extended-A">Ethiopic Extended-A</option>
+            <option data-range="AB30—AB6F" value="Latin Extended-E">Latin Extended-E</option>
+            <option data-range="AB70—ABBF" value="Cherokee Supplement">Cherokee Supplement</option>
+            <option data-range="ABC0—ABFF" value="Meetei Mayek">Meetei Mayek</option>
+            <option data-range="AC00—D7AF" value="Hangul Syllables">Hangul Syllables</option>
+            <option data-range="D7B0—D7FF" value="Hangul Jamo Extended-B">Hangul Jamo Extended-B</option>
+            <option data-range="D800—DB7F" value="High Surrogates">High Surrogates</option>
+            <option data-range="DB80—DBFF" value="High Private Use Surrogates">High Private Use Surrogates</option>
+            <option data-range="DC00—DFFF" value="Low Surrogates">Low Surrogates</option>
+            <option data-range="E000—F8FF" value="Private Use Area">Private Use Area</option>
+            <option data-range="F900—FAFF" value="CJK Compatibility Ideographs">CJK Compatibility Ideographs</option>
+            <option data-range="FB00—FB4F" value="Alphabetic Presentation Forms">Alphabetic Presentation Forms</option>
+            <option data-range="FB50—FDFF" value="Arabic Presentation Forms-A">Arabic Presentation Forms-A</option>
+            <option data-range="FE00—FE0F" value="Variation Selectors">Variation Selectors</option>
+            <option data-range="FE10—FE1F" value="Vertical Forms">Vertical Forms</option>
+            <option data-range="FE20—FE2F" value="Combining Half Marks">Combining Half Marks</option>
+            <option data-range="FE30—FE4F" value="CJK Compatibility Forms">CJK Compatibility Forms</option>
+            <option data-range="FE50—FE6F" value="Small Form Variants">Small Form Variants</option>
+            <option data-range="FE70—FEFF" value="Arabic Presentation Forms-B">Arabic Presentation Forms-B</option>
+            <option data-range="FF00—FFEF" value="Halfwidth and Fullwidth Forms">Halfwidth and Fullwidth Forms</option>
+            <option data-range="FFF0—FFFF" value="Specials">Specials</option>
+            <option data-range="10000—1007F" value="Linear B Syllabary">Linear B Syllabary</option>
+            <option data-range="10080—100FF" value="Linear B Ideograms">Linear B Ideograms</option>
+            <option data-range="10100—1013F" value="Aegean Numbers">Aegean Numbers</option>
+            <option data-range="10140—1018F" value="Ancient Greek Numbers">Ancient Greek Numbers</option>
+            <option data-range="10190—101CF" value="Ancient Symbols">Ancient Symbols</option>
+            <option data-range="101D0—101FF" value="Phaistos Disc">Phaistos Disc</option>
+            <option data-range="10280—1029F" value="Lycian">Lycian</option>
+            <option data-range="102A0—102DF" value="Carian">Carian</option>
+            <option data-range="102E0—102FF" value="Coptic Epact Numbers">Coptic Epact Numbers</option>
+            <option data-range="10300—1032F" value="Old Italic">Old Italic</option>
+            <option data-range="10330—1034F" value="Gothic">Gothic</option>
+            <option data-range="10350—1037F" value="Old Permic">Old Permic</option>
+            <option data-range="10380—1039F" value="Ugaritic">Ugaritic</option>
+            <option data-range="103A0—103DF" value="Old Persian">Old Persian</option>
+            <option data-range="10400—1044F" value="Deseret">Deseret</option>
+            <option data-range="10450—1047F" value="Shavian">Shavian</option>
+            <option data-range="10480—104AF" value="Osmanya">Osmanya</option>
+            <option data-range="104B0—104FF" value="Osage">Osage</option>
+            <option data-range="10500—1052F" value="Elbasan">Elbasan</option>
+            <option data-range="10530—1056F" value="Caucasian Albanian">Caucasian Albanian</option>
+            <option data-range="10600—1077F" value="Linear A">Linear A</option>
+            <option data-range="10800—1083F" value="Cypriot Syllabary">Cypriot Syllabary</option>
+            <option data-range="10840—1085F" value="Imperial Aramaic">Imperial Aramaic</option>
+            <option data-range="10860—1087F" value="Palmyrene">Palmyrene</option>
+            <option data-range="10880—108AF" value="Nabataean">Nabataean</option>
+            <option data-range="108E0—108FF" value="Hatran">Hatran</option>
+            <option data-range="10900—1091F" value="Phoenician">Phoenician</option>
+            <option data-range="10920—1093F" value="Lydian">Lydian</option>
+            <option data-range="10980—1099F" value="Meroitic Hieroglyphs">Meroitic Hieroglyphs</option>
+            <option data-range="109A0—109FF" value="Meroitic Cursive">Meroitic Cursive</option>
+            <option data-range="10A00—10A5F" value="Kharoshthi">Kharoshthi</option>
+            <option data-range="10A60—10A7F" value="Old South Arabian">Old South Arabian</option>
+            <option data-range="10A80—10A9F" value="Old North Arabian">Old North Arabian</option>
+            <option data-range="10AC0—10AFF" value="Manichaean">Manichaean</option>
+            <option data-range="10B00—10B3F" value="Avestan">Avestan</option>
+            <option data-range="10B40—10B5F" value="Inscriptional Parthian">Inscriptional Parthian</option>
+            <option data-range="10B60—10B7F" value="Inscriptional Pahlavi">Inscriptional Pahlavi</option>
+            <option data-range="10B80—10BAF" value="Psalter Pahlavi">Psalter Pahlavi</option>
+            <option data-range="10C00—10C4F" value="Old Turkic">Old Turkic</option>
+            <option data-range="10C80—10CFF" value="Old Hungarian">Old Hungarian</option>
+            <option data-range="10E60—10E7F" value="Rumi Numeral Symbols">Rumi Numeral Symbols</option>
+            <option data-range="11000—1107F" value="Brahmi">Brahmi</option>
+            <option data-range="11080—110CF" value="Kaithi">Kaithi</option>
+            <option data-range="110D0—110FF" value="Sora Sompeng">Sora Sompeng</option>
+            <option data-range="11100—1114F" value="Chakma">Chakma</option>
+            <option data-range="11150—1117F" value="Mahajani">Mahajani</option>
+            <option data-range="11180—111DF" value="Sharada">Sharada</option>
+            <option data-range="111E0—111FF" value="Sinhala Archaic Numbers">Sinhala Archaic Numbers</option>
+            <option data-range="11200—1124F" value="Khojki">Khojki</option>
+            <option data-range="11280—112AF" value="Multani">Multani</option>
+            <option data-range="112B0—112FF" value="Khudawadi">Khudawadi</option>
+            <option data-range="11300—1137F" value="Grantha">Grantha</option>
+            <option data-range="11400—1147F" value="Newa">Newa</option>
+            <option data-range="11480—114DF" value="Tirhuta">Tirhuta</option>
+            <option data-range="11580—115FF" value="Siddham">Siddham</option>
+            <option data-range="11600—1165F" value="Modi">Modi</option>
+            <option data-range="11660—1167F" value="Mongolian Supplement">Mongolian Supplement</option>
+            <option data-range="11680—116CF" value="Takri">Takri</option>
+            <option data-range="11700—1173F" value="Ahom">Ahom</option>
+            <option data-range="118A0—118FF" value="Warang Citi">Warang Citi</option>
+            <option data-range="11A00—11A4F" value="Zanabazar Square">Zanabazar Square</option>
+            <option data-range="11A50—11AAF" value="Soyombo">Soyombo</option>
+            <option data-range="11AC0—11AFF" value="Pau Cin Hau">Pau Cin Hau</option>
+            <option data-range="11C00—11C6F" value="Bhaiksuki">Bhaiksuki</option>
+            <option data-range="11C70—11CBF" value="Marchen">Marchen</option>
+            <option data-range="11D00—11D5F" value="Masaram Gondi">Masaram Gondi</option>
+            <option data-range="12000—123FF" value="Cuneiform">Cuneiform</option>
+            <option data-range="12400—1247F" value="Cuneiform Numbers and Punctuation">Cuneiform Numbers and Punctuation
+            </option>
+            <option data-range="12480—1254F" value="Early Dynastic Cuneiform">Early Dynastic Cuneiform</option>
+            <option data-range="13000—1342F" value="Egyptian Hieroglyphs">Egyptian Hieroglyphs</option>
+            <option data-range="14400—1467F" value="Anatolian Hieroglyphs">Anatolian Hieroglyphs</option>
+            <option data-range="16800—16A3F" value="Bamum Supplement">Bamum Supplement</option>
+            <option data-range="16A40—16A6F" value="Mro">Mro</option>
+            <option data-range="16AD0—16AFF" value="Bassa Vah">Bassa Vah</option>
+            <option data-range="16B00—16B8F" value="Pahawh Hmong">Pahawh Hmong</option>
+            <option data-range="16F00—16F9F" value="Miao">Miao</option>
+            <option data-range="16FE0—16FFF" value="Ideographic Symbols and Punctuation">Ideographic Symbols and
+                Punctuation</option>
+            <option data-range="17000—187FF" value="Tangut">Tangut</option>
+            <option data-range="18800—18AFF" value="Tangut Components">Tangut Components</option>
+            <option data-range="1B000—1B0FF" value="Kana Supplement">Kana Supplement</option>
+            <option data-range="1B100—1B12F" value="Kana Extended-A">Kana Extended-A</option>
+            <option data-range="1B170—1B2FF" value="Nushu">Nushu</option>
+            <option data-range="1BC00—1BC9F" value="Duployan">Duployan</option>
+            <option data-range="1BCA0—1BCAF" value="Shorthand Format Controls">Shorthand Format Controls</option>
+            <option data-range="1D000—1D0FF" value="Byzantine Musical Symbols">Byzantine Musical Symbols</option>
+            <option data-range="1D100—1D1FF" value="Musical Symbols">Musical Symbols</option>
+            <option data-range="1D200—1D24F" value="Ancient Greek Musical Notation">Ancient Greek Musical Notation
+            </option>
+            <option data-range="1D300—1D35F" value="Tai Xuan Jing Symbols">Tai Xuan Jing Symbols</option>
+            <option data-range="1D360—1D37F" value="Counting Rod Numerals">Counting Rod Numerals</option>
+            <option data-range="1D400—1D7FF" value="Mathematical Alphanumeric Symbols">Mathematical Alphanumeric Symbols
+            </option>
+            <option data-range="1D800—1DAAF" value="Sutton SignWriting">Sutton SignWriting</option>
+            <option data-range="1E000—1E02F" value="Glagolitic Supplement">Glagolitic Supplement</option>
+            <option data-range="1E800—1E8DF" value="Mende Kikakui">Mende Kikakui</option>
+            <option data-range="1E900—1E95F" value="Adlam">Adlam</option>
+            <option data-range="1EE00—1EEFF" value="Arabic Mathematical Alphabetic Symbols">Arabic Mathematical
+                Alphabetic Symbols</option>
+            <option data-range="1F000—1F02F" value="Mahjong Tiles">Mahjong Tiles</option>
+            <option data-range="1F030—1F09F" value="Domino Tiles">Domino Tiles</option>
+            <option data-range="1F0A0—1F0FF" value="Playing Cards">Playing Cards</option>
+            <option data-range="1F100—1F1FF" value="Enclosed Alphanumeric Supplement">Enclosed Alphanumeric Supplement
+            </option>
+            <option data-range="1F200—1F2FF" value="Enclosed Ideographic Supplement">Enclosed Ideographic Supplement
+            </option>
+            <option data-range="1F300—1F5FF" value="Miscellaneous Symbols and Pictographs">Miscellaneous Symbols and
+                Pictographs</option>
+            <option data-range="1F600—1F64F" value="Emoticons (Emoji)">Emoticons (Emoji)</option>
+            <option data-range="1F650—1F67F" value="Ornamental Dingbats">Ornamental Dingbats</option>
+            <option data-range="1F680—1F6FF" value="Transport and Map Symbols">Transport and Map Symbols</option>
+            <option data-range="1F700—1F77F" value="Alchemical Symbols">Alchemical Symbols</option>
+            <option data-range="1F780—1F7FF" value="Geometric Shapes Extended">Geometric Shapes Extended</option>
+            <option data-range="1F800—1F8FF" value="Supplemental Arrows-C">Supplemental Arrows-C</option>
+            <option data-range="1F900—1F9FF" value="Supplemental Symbols and Pictographs">Supplemental Symbols and
+                Pictographs</option>
+            <option data-range="20000—2A6DF" value="CJK Unified Ideographs Extension B">CJK Unified Ideographs Extension
+                B</option>
+            <option data-range="2A700—2B73F" value="CJK Unified Ideographs Extension C">CJK Unified Ideographs Extension
+                C</option>
+            <option data-range="2B740—2B81F" value="CJK Unified Ideographs Extension D">CJK Unified Ideographs Extension
+                D</option>
+            <option data-range="2B820—2CEAF" value="CJK Unified Ideographs Extension E">CJK Unified Ideographs Extension
+                E</option>
+            <option data-range="2CEB0—2EBEF" value="CJK Unified Ideographs Extension F">CJK Unified Ideographs Extension
+                F</option>
+            <option data-range="2F800—2FA1F" value="CJK Compatibility Ideographs Supplement">CJK Compatibility
+                Ideographs Supplement</option>
+            <option data-range="E0000—E007F" value="Tags">Tags</option>
+            <option data-range="E0100—E01EF" value="Variation Selectors Supplement">Variation Selectors Supplement
+            </option>
+        </datalist>
+
+        <script async src="js/font_texture.js"></script>
+    </div>
+
+
+
+
+    <div id="Bitwise" class="tabcontent">
+        <h3>Bitwise</h3>
+    </div>
+
+    <script async src="js/index.js"></script>
 </body>
+
 </html>
