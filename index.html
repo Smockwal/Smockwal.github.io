@@ -12,7 +12,9 @@
 
     <div class="tab">
         <button class="tablinks" onclick="set_tab(event, 'Home')" id="home_tab_btn">Home</button>
-        <button class="tablinks" onclick="set_tab(event, 'Font Texture')" id="font_texture_tab_btn">Font Texture</button>
+        <button class="tablinks" onclick="set_tab(event, 'Font Texture')" id="font_texture_tab_btn">Font
+            Texture</button>
+        <button class="tablinks" onclick="set_tab(event, 'Sub Texture')" id="sub_texture_tab_btn">Sub Texture</button>
         <button class="tablinks" onclick="set_tab(event, 'Bitwise')" id="bitwise_tab_btn">Bitwise</button>
     </div>
 
@@ -145,8 +147,8 @@
                         <input id=ft_glow_color type=color title='Glow color' value=#ffffff style="width:75px">
                     </div>
                     <div style="grid-area:5/3/6/4">
-                        <input id=ft_glow_size type=range title='Glow distance' value=0 style="width:100%" max=20
-                            min=0 step=1>
+                        <input id=ft_glow_size type=range title='Glow distance' value=0 style="width:100%" max=20 min=0
+                            step=1>
                     </div>
                     <div style="grid-area:6/1/7/2">
                         <input type=checkbox id=ft_is_blured>
@@ -184,7 +186,7 @@
                 <div style="text-align:center">
                     <div style="white-space:nowrap;display:grid">
                         <div style="grid-column:1">
-                            <span>Size:</span> 
+                            <span>Size:</span>
                             <select id=ft_texture_size>
                                 <option value=16>16
                                 <option value=32>32
@@ -195,7 +197,7 @@
                                 <option value=1024>1024
                             </select>
                         </div>
-                       
+
                         <a href=# id=ft_update_btn style="grid-column:3">🗘 Update</a>
                         <div style="grid-column:4">
                             <span>🔎 Zoom:</span>
@@ -550,7 +552,55 @@
         <script async src="js/font_texture.js"></script>
     </div>
 
+    <div id="Sub Texture" class="tabcontent">
+        <link rel="stylesheet" href="css/sub_texture.css">
 
+        <div class="st_container">
+            <div class="st_input">
+                <div class="st_file_select">
+                    <input type="file" id="st_file_select" />
+                    <img id="st_image" style="display:none;" />
+                </div>
+                <div class="st_file_width">
+                    <label for=st_img_width>width:</label>
+                    <input id="st_img_width" type=number value=0 readonly>
+                </div>
+                <div class="st_file_height">
+                    <label for=st_img_height>height:</label>
+                    <input id="st_img_height" type=number value=0 readonly>
+                </div>
+                <div class="st_line_top">
+                    <label for=st_line_t>TOP:</label>
+                    <input id="st_line_t" type=number max=1 min="0" step=1 value=0>
+                </div>
+                <div class="st_line_bottom">
+                    <label for=st_line_b>BUTTOM:</label>
+                    <input id="st_line_b" type=number max=1 min="0" step=1 value=0>
+                </div>
+                <div class="st_line_left">
+                    <label for=st_line_l>LEFT:</label>
+                    <input id="st_line_l" type=number max=1 min="0" step=1 value=0>
+                </div>
+                <div class="st_line_right">
+                    <label for=st_line_r>RIGHT:</label>
+                    <input id="st_line_r" type=number max=1 min="0" step=1 value=0>
+                </div>
+            </div>
+            <div class="st_output">
+                <textarea id="st_out_data" style="width:98%;" rows="4" readonly></textarea>
+            </div>
+            <div class="st_edit">
+                <canvas id=st_canvas_edit style="width:100%;height:75%;"></canvas>
+            </div>
+            <div class="st_view">
+                <div class="st_view_zoom">
+                    <canvas id=st_canvas_view style="width:100%;height:100%;"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <script async src="js/sub_texture.js"></script>
+    </div>
 
 
     <div id="Bitwise" class="tabcontent">

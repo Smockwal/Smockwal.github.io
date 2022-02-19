@@ -54,3 +54,8 @@ const hex_2_rgba = (hex, a) => {
     let b = parseInt(numb.substring(4, 6), 16);
     return `rgba(${r},${g},${b},${a})`;
 }
+
+var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+                            window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+
+var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
