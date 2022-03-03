@@ -15,8 +15,9 @@ var st_line_top = 0,
     st_line_grab = 0;
 
 const float = (x) => {
-    let val = `${new Float32Array([x])[0]}`;
-    return val.replace(/0\./, `.`);
+    if (parseInt(x, 10) == x) return x;
+    let val = `${parseFloat(x).toPrecision(12)}`;
+    return val.replace(/0+$/, ``).replace(/0\./, `.`);
 }
 
 // nearest power of 2
@@ -87,8 +88,11 @@ const st_image_data = async (img) => {
         st_img_height.style.backgroundColor = `#FFF`;
 
     let canvas = elem(`st_canvas_edit`);
-    canvas.width = 1024;
-    canvas.height = 1024;
+    //canvas.width = 1024;
+    //canvas.height = 1024;
+
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
 
     elem(`st_line_t`).max = img.naturalHeight;
     elem(`st_line_b`).max = img.naturalHeight;
@@ -130,24 +134,24 @@ const st_line_select = async (ev) => {
     const canv_width = canv_box.right - canv_box.left;
     const canv_height = canv_box.bottom - canv_box.top;
 
+    let mouseX = ev.offsetX;
+    let mouseY = ev.offsetY;
+
     const x_fact = 1.0 / (canv_width / elem(`st_img_width`).value);
     const y_fact = 1.0 / (canv_height / elem(`st_img_height`).value);
 
-    const x = ev.layerX * x_fact;
-    const y = ev.layerY * y_fact;
-
-    //console.log(`numb: ${Math.abs(y - st_line_top)}`);
-    if (Math.abs(y - st_line_top) < GRAB_DIST) {
+    //console.log(`numb: ${Math.abs(mouseY - st_line_top)}`);
+    if (Math.abs(mouseY - st_line_top) < GRAB_DIST) {
         st_line_grab = LINE_TOP;
     }
-    else if (Math.abs(y - st_line_bottom) < GRAB_DIST) {
+    else if (Math.abs(mouseY - st_line_bottom) < GRAB_DIST) {
         //console.log(`numb: ${Math.abs(x - st_line_bottom)}`);
         st_line_grab = LINE_BOTTOM;
     }
-    else if (Math.abs(x - st_line_left) < GRAB_DIST) {
+    else if (Math.abs(mouseX - st_line_left) < GRAB_DIST) {
         st_line_grab = LINE_LEFT;
     }
-    else if (Math.abs(x - st_line_right) < GRAB_DIST) {
+    else if (Math.abs(mouseX - st_line_right) < GRAB_DIST) {
         st_line_grab = LINE_RIGHT;
     }
     else {
@@ -160,11 +164,18 @@ const st_mouse_up = async () => {
 }
 
 const st_zoom = async (ev) => {
+    //console.log(`(${ev.offsetX}, ${ev.offsetY})`);
     let edit_canv = elem(`st_canvas_edit`);
 
     const canv_box = edit_canv.getBoundingClientRect();
+    //console.log(`left: ${canv_box.left}, top: ${canv_box.top}`);
     const canv_width = canv_box.right - canv_box.left;
     const canv_height = canv_box.bottom - canv_box.top;
+
+    let mouseX = ev.offsetX;
+    let mouseY = ev.offsetY;
+
+    //console.log(`x: ${mouseX}, y: ${mouseY}`);
 
     const x = Math.round(ev.layerX * (edit_canv.width / canv_width));
     const y = Math.round(ev.layerY * (edit_canv.height / canv_height));
@@ -174,26 +185,27 @@ const st_zoom = async (ev) => {
         const y_fact = 1.0 / (canv_height / elem(`st_img_height`).value);
 
         if (st_line_grab == LINE_TOP) {
-            elem(`st_line_t`).value = Math.round(ev.layerY * y_fact);
+            elem(`st_line_t`).value = Math.round(mouseY);
         }
         else if (st_line_grab == LINE_BOTTOM) {
-            elem(`st_line_b`).value = Math.round(ev.layerY * y_fact);
+            elem(`st_line_b`).value = Math.round(mouseY);
         }
         else if (st_line_grab == LINE_LEFT) {
-            elem(`st_line_l`).value = Math.round(ev.layerX * x_fact);
+            elem(`st_line_l`).value = Math.round(mouseX);
         }
         else if (st_line_grab == LINE_RIGHT) {
-            elem(`st_line_r`).value = Math.round(ev.layerX * x_fact);
+            elem(`st_line_r`).value = Math.round(mouseX);
         }
         st_update_output();
     }
 
     let view_canv = elem(`st_canvas_view`);
-    const view_ctx = view_canv.getContext('2d', { alpha: false });
+    const view_ctx = view_canv.getContext('2d');
+    view_ctx.clearRect(0, 0, view_canv.width, view_canv.height);
 
     view_ctx.drawImage(edit_canv,
-        Math.min(Math.max(0, x - 25), edit_canv.width - 50),
-        Math.min(Math.max(0, y - 25), edit_canv.height - 50),
+        Math.min(Math.max(0, mouseX - 25), edit_canv.width - 50),
+        Math.min(Math.max(0, mouseY - 25), edit_canv.height - 50),
         50, 50,
         0, 0,
         view_canv.width, view_canv.height);
@@ -201,7 +213,7 @@ const st_zoom = async (ev) => {
 
 const st_draw = async () => {
     let canvas = elem(`st_canvas_edit`);
-    const ctx = canvas.getContext('2d', { alpha: false });
+    const ctx = canvas.getContext('2d');
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -214,7 +226,7 @@ const st_draw = async () => {
     st_line_right = elem(`st_line_r`).value;
 
     ctx.strokeStyle = `#00ccff`;
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 1;
 
     const x_fact = (canvas.width / elem(`st_img_width`).value);
     const y_fact = (canvas.height / elem(`st_img_height`).value);
@@ -259,3 +271,5 @@ elem(`st_line_t`).addEventListener(`change`, st_update_output, false);
 elem(`st_line_b`).addEventListener(`change`, st_update_output, false);
 elem(`st_line_l`).addEventListener(`change`, st_update_output, false);
 elem(`st_line_r`).addEventListener(`change`, st_update_output, false);
+
+
