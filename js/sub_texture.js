@@ -168,13 +168,13 @@ const st_zoom = async (ev) => {
     const canv_box = edit_canv.getBoundingClientRect();
     const canv_width = canv_box.right - canv_box.left;
     const canv_height = canv_box.bottom - canv_box.top;
-    //console.log(`canv_width: ${canv_width}, canv_height: ${canv_height}`);
-    //console.log(`mouseX: ${ev.offsetX}, mouseY: ${ev.offsetY}`);
+    console.log(`canv_width: ${canv_width}, canv_height: ${canv_height}`);
+    console.log(`mouseX: ${ev.offsetX}, mouseY: ${ev.offsetY}`);
 
     const x_fact = (elem(`st_img_width`).value / canv_width);
     const y_fact = (elem(`st_img_height`).value / canv_height);
-    //console.log(`width_fact: ${x_fact}, height_fact: ${y_fact}`);
-    //console.log(`x_fact: ${ev.offsetX * x_fact}, y_fact: ${ev.offsetY * y_fact}`);
+    console.log(`width_fact: ${x_fact}, height_fact: ${y_fact}`);
+    console.log(`x_fact: ${ev.offsetX * x_fact}, y_fact: ${ev.offsetY * y_fact}`);
     if (st_line_grab != 0) 
     {
         if (st_line_grab == LINE_TOP) {
