@@ -134,24 +134,21 @@ const st_line_select = async (ev) => {
     const canv_width = canv_box.right - canv_box.left;
     const canv_height = canv_box.bottom - canv_box.top;
 
-    let mouseX = ev.offsetX;
-    let mouseY = ev.offsetY;
+    const x_fact = (elem(`st_img_width`).value / canv_width);
+    const y_fact = (elem(`st_img_height`).value / canv_height);
 
-    const x_fact = 1.0 / (canv_width / elem(`st_img_width`).value);
-    const y_fact = 1.0 / (canv_height / elem(`st_img_height`).value);
-
-    //console.log(`numb: ${Math.abs(mouseY - st_line_top)}`);
-    if (Math.abs(mouseY - st_line_top) < GRAB_DIST) {
+    console.log(`numb: ${Math.abs((ev.offsetY * y_fact) - st_line_top)}`);
+    if (Math.abs((ev.offsetY * y_fact)- st_line_top) < GRAB_DIST) {
         st_line_grab = LINE_TOP;
     }
-    else if (Math.abs(mouseY - st_line_bottom) < GRAB_DIST) {
+    else if (Math.abs((ev.offsetY * y_fact) - st_line_bottom) < GRAB_DIST) {
         //console.log(`numb: ${Math.abs(x - st_line_bottom)}`);
         st_line_grab = LINE_BOTTOM;
     }
-    else if (Math.abs(mouseX - st_line_left) < GRAB_DIST) {
+    else if (Math.abs((ev.offsetX * x_fact) - st_line_left) < GRAB_DIST) {
         st_line_grab = LINE_LEFT;
     }
-    else if (Math.abs(mouseX - st_line_right) < GRAB_DIST) {
+    else if (Math.abs((ev.offsetX * x_fact) - st_line_right) < GRAB_DIST) {
         st_line_grab = LINE_RIGHT;
     }
     else {
@@ -164,37 +161,33 @@ const st_mouse_up = async () => {
 }
 
 const st_zoom = async (ev) => {
+    console.log(`==========================================`);
     //console.log(`(${ev.offsetX}, ${ev.offsetY})`);
     let edit_canv = elem(`st_canvas_edit`);
 
     const canv_box = edit_canv.getBoundingClientRect();
-    //console.log(`left: ${canv_box.left}, top: ${canv_box.top}`);
     const canv_width = canv_box.right - canv_box.left;
     const canv_height = canv_box.bottom - canv_box.top;
+    //console.log(`canv_width: ${canv_width}, canv_height: ${canv_height}`);
+    //console.log(`mouseX: ${ev.offsetX}, mouseY: ${ev.offsetY}`);
 
-    let mouseX = ev.offsetX;
-    let mouseY = ev.offsetY;
-
-    //console.log(`x: ${mouseX}, y: ${mouseY}`);
-
-    const x = Math.round(ev.layerX * (edit_canv.width / canv_width));
-    const y = Math.round(ev.layerY * (edit_canv.height / canv_height));
-
-    if (st_line_grab != 0) {
-        const x_fact = 1.0 / (canv_width / elem(`st_img_width`).value);
-        const y_fact = 1.0 / (canv_height / elem(`st_img_height`).value);
-
+    const x_fact = (elem(`st_img_width`).value / canv_width);
+    const y_fact = (elem(`st_img_height`).value / canv_height);
+    //console.log(`width_fact: ${x_fact}, height_fact: ${y_fact}`);
+    //console.log(`x_fact: ${ev.offsetX * x_fact}, y_fact: ${ev.offsetY * y_fact}`);
+    if (st_line_grab != 0) 
+    {
         if (st_line_grab == LINE_TOP) {
-            elem(`st_line_t`).value = Math.round(mouseY);
+            elem(`st_line_t`).value = Math.round(ev.offsetY * y_fact);
         }
         else if (st_line_grab == LINE_BOTTOM) {
-            elem(`st_line_b`).value = Math.round(mouseY);
+            elem(`st_line_b`).value = Math.round(ev.offsetY * y_fact);
         }
         else if (st_line_grab == LINE_LEFT) {
-            elem(`st_line_l`).value = Math.round(mouseX);
+            elem(`st_line_l`).value = Math.round(ev.offsetX * x_fact);
         }
         else if (st_line_grab == LINE_RIGHT) {
-            elem(`st_line_r`).value = Math.round(mouseX);
+            elem(`st_line_r`).value = Math.round(ev.offsetX * x_fact);
         }
         st_update_output();
     }
@@ -204,8 +197,8 @@ const st_zoom = async (ev) => {
     view_ctx.clearRect(0, 0, view_canv.width, view_canv.height);
 
     view_ctx.drawImage(edit_canv,
-        Math.min(Math.max(0, mouseX - 25), edit_canv.width - 50),
-        Math.min(Math.max(0, mouseY - 25), edit_canv.height - 50),
+        Math.min(Math.max(0, (ev.offsetX * x_fact) - 25), canv_width - 50),
+        Math.min(Math.max(0, (ev.offsetY * y_fact) - 25), canv_height - 50),
         50, 50,
         0, 0,
         view_canv.width, view_canv.height);
