@@ -268,7 +268,7 @@ const ft_update = async () => {
     for (let i = 0, size = buffer.length; i < size; ++i) {
         let char = encodeURIComponent(buffer[i]);
         char_bytes = char.bytes_numb();
-        if ((char_bytes + line_bytes) >= 255) {
+        if ((char_bytes + line_bytes) >= 1024) {
             out += `\n`;
             line_bytes = 0;
         }
