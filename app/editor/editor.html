@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/plain; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="ROBOTS" content="NOODP">
+    <title>lsl parser</title>
+</head>
+
+<body>
+    <link rel="stylesheet" href="./css/editor.css">
+
+    <div class="layer">
+        <div id="top_nav" class="top_nav">
+            <div id="topm_file" class="topm_btn">
+                <button class="dropbtn">File </button>
+                <div class="dropdown_content" id="file_menue_div">
+                    <a href="#" id="new_act">New</a>
+                    <a href="#" id="open_file_act">Open file</a>
+                    <a href="#" id="open_folder_act">Open folder</a>
+                    <hr class="solid">
+                    <a href="#" id="save_output_act">Save output</a>
+                    <hr class="solid">
+                    <a href="#" id="close_folder_act">Close folder</a>
+                    <hr class="solid">
+                    <a href="../../index.html" id="quit_act">Quit</a>
+                </div>
+            </div>
+            <!-- 
+            <div id="topm_edit" class="topm_btn">
+                <button class="dropbtn">Edit </button>
+                <div class="dropdown_content" id="edit_menue_div">
+                    <a href="#" id="select_act">Select All</a>
+                    <hr class="solid">
+                    <a href="#" id="copy_act">Copy</a>
+                    <a href="#" id="paste_act">Paste</a>
+                </div>
+            </div>
+            -->
+            <div id="topm_run" class="topm_btn">
+                <button class="dropbtn">Run</button>
+                <div class="dropdown_content" id="run_menue_div">
+                    <a href="#" id="preprocess_act">Preprocess</a>
+                    <a href="#" id="translate_act">Translate</a>
+                    <a href="#" id="interpret_act">Interpret</a>
+                    <a href="#" id="optimize_act">Optimize</a>
+                    <a href="#" id="format_act">Format</a>
+                    <hr class="solid">
+                    <a href="#" id="setting_act">Setting</a>
+                </div>
+            </div>
+            <div id="topm_about" class="topm_btn">
+                <button class="dropbtn">About </button>
+                <div class="dropdown_content" id="about_menue_div">
+                    <a href="#" id="help_act">Help</a>
+                    <a href="#" id="about_act">About</a>
+                </div>
+            </div>
+        </div>
+        <div class="output_tabs">
+            <button id="input_tab_btn" class="tablinks" data-for="input">input</button>
+            <button id="prepro_tab_btn" class="tablinks" data-for="prepro">prepro</button>
+            <button id="translate_tab_btn" class="tablinks" data-for="translate">translate</button>
+            <button id="parser_tab_btn" class="tablinks" data-for="parser">parser</button>
+            <button id="optimizer_tab_btn" class="tablinks" data-for="optimizer">optimizer</button>
+            <button id="formatter_tab_btn" class="tablinks" data-for="formatter">formatter</button>
+            <div id="setting_btn" class="setting_btn" data-for="none">🔅</div>
+            <div id="run_btn" class="run_btn" data-for="none">►</div>
+            
+        </div>
+        <div class="text_view">
+            <textarea id="input" class="tabcontent" wrap="false" autocomplete="false" spellcheck="false"
+                placeholder="code here"></textarea>
+            <textarea id="prepro" class="tabcontent" wrap="false" autocomplete="false" spellcheck="false"
+                readonly></textarea>
+            <textarea id="translate" class="tabcontent" wrap="false" autocomplete="false" spellcheck="false"
+                readonly></textarea>
+            <textarea id="parser" class="tabcontent" wrap="false" autocomplete="false" spellcheck="false"
+                readonly></textarea>
+            <textarea id="optimizer" class="tabcontent" wrap="false" autocomplete="false" spellcheck="false"
+                readonly></textarea>
+            <textarea id="formatter" class="tabcontent" wrap="false" autocomplete="false" spellcheck="false"
+                readonly></textarea>
+        </div>
+        <div class="control_btns"></div>
+        <textarea id="debug_output" class="debug_view" spellcheck="false" wrap="soft" readonly></textarea>
+        <div class="files_nav scrly">
+            <div class="tree_title">Files</div>
+            <div id="files_treeview" class="treeview"></div>
+        </div>
+        <div id="status_bar" class="status_bar">status_bar</div>
+    </div>
+
+    <dialog id="dialog_elem">
+        <div id="dial_header" class="dial_header"></div>
+        <div id="dial_body" class="dial_body"></div>
+        <div id="dial_footer" class="dial_footer"></div>
+    </dialog>
+
+    <div id="file_worker" style="display:none;">
+        <input type="file" id="file_loader" name="file_loader">
+    </div>
+
+    <div id="context_elem" class="context" style="display:none;"></div>
+
+    <script type="module" src="./js/main.js"></script>
+</body>
+
+</html>

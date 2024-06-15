@@ -1,0 +1,17 @@
+
+//#include <stdlsl.lsl>
+
+//#define JSON_TYPE R"--({"﷐":"invalid","﷑":"object","﷒":"array","﷓":"number","﷔":"string","﷕":"null","﷖":"true","﷗":"false","﷘":"delete"})--"
+
+string jtype_string(string entry) {
+    string jtype = R"--({"﷐":"invalid","﷑":"object","﷒":"array","﷓":"number","﷔":"string","﷕":"null","﷖":"true","﷗":"false","﷘":"delete"})--";
+    return llJsonGetValue(jtype, [entry]);
+}
+
+string jescape(string json) {
+    list chars = ["%3A", ":", "%22", "\"", "%27", "'", "%7d", "}", "%7b", "{", "%5d", "]", "%5b", "["];
+    integer index;
+    for (; i < llGetListLength(chars); i += 2)
+        json = llReplaceSubString(json, llList2String(chars, index + 1), llList2String(chars, index), 0);
+    return json;
+}

@@ -1,0 +1,185 @@
+#ifndef STD_LSL 
+#define STD_LSL
+
+#define int integer
+#define char string
+#define vec3 vector
+#define vec4 rotation
+
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//		                    integer
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// 0x00000001 1
+#define FlagA 0x1
+
+// 0x00000002 2
+#define FlagB 0x2
+
+// 0x00000004 4
+#define FlagC 0x4
+
+// 0x00000008 8
+#define FlagD 0x8
+
+// 0x00000010 16
+#define FlagE 0x10
+
+// 0x00000020 32
+#define FlagF 0x20
+
+// 0x00000040 64
+#define FlagG 0x40
+
+// 0x00000080 128
+#define FlagH 0x80
+
+// 0x00000100 256
+#define FlagI 0x100
+
+// 0x00000200 512
+#define FlagJ 0x200
+
+// 0x00000400 1024
+#define FlagK 0x400
+
+// 0x00000800 2048
+#define FlagL 0x800
+
+// 0x00001000 4096
+#define FlagM 0x1000
+
+// 0x00002000 8192
+#define FlagN 0x2000
+
+// 0x00004000 16384
+#define FlagO 0x4000
+
+// 0x00008000 32768
+#define FlagP 0x8000
+
+// 0x00010000 65536
+#define FlagQ 0x10000
+
+// 0x00020000 131072
+#define FlagR 0x20000
+
+// 0x00040000 262144
+#define FlagS 0x40000
+
+// 0x00080000 524288
+#define FlagT 0x80000
+
+// 0x00100000 1048576
+#define FlagU 0x100000
+
+// 0x00200000 2097152
+#define FlagV 0x200000
+
+// 0x00400000 4194304
+#define FlagW 0x400000
+
+// 0x00800000 8388608
+#define FlagX 0x800000
+
+// 0x01000000 16777216
+#define FlagY 0x1000000 
+
+// 0x02000000 33554432
+#define FlagZ 0x2000000
+
+// 0x04000000 67108864
+#define FlagAA 0x04000000
+
+// 0x08000000 134217728
+#define FlagAB 0x08000000
+
+// 0x10000000 268435456
+#define FlagAC 0x10000000
+
+// 0x20000000 536870912
+#define FlagAD 0x20000000
+
+// 0x40000000 1073741824
+#define FlagAE 0x40000000
+
+// 0x80000000 2147483648
+#define FlagAF 0x80000000
+
+#define bool(x) !!(x)
+
+#define iAbs(x) ((x+(x>>255))^(x>>255))
+#define iMin(x, y) (y+((x-y)&((x-y)>>255)))
+#define iMax(x, y) (x-((x-y)&((x-y)>>255)))
+
+#define isPow2(x) (!(x>0&&(x&(x-1))))
+
+#define bwAdd(a, b) a = a | b
+#define bwRem(a, b) a = (a & ~(b))
+#define bwSet(a, b, c) a = (a & ~(b)) | c
+#define bwCond(a, b, c) a = (a & ~(b)) | (-bool(c) & (b))
+
+#define is_int(x) (x == (string)((integer)x))
+
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//		                    float
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#define TIMER_MIN_TIME 0.02244444444444444444444444444444
+
+#define is_float(x) (x == (string)((float)x))
+
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//		                    string
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#define GSL(val) llStringLength(val)
+#define GSLP(val) ((val)!="")
+
+// Old
+//int bytes_count(string val) { 
+//    return 4 * ((int)(llStringLength(val) * 0.3333333333333)); 
+//}
+
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//		                    list
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#ifdef MONO
+#ifdef MONO_MEM
+#define GLL(val) ((val)!=[])
+#define GLLP(val) ((val)!=[])
+#define GLLN(val) ([]!=(val))
+#else // MONO_MEM
+#define GLL(val) llGetListLength(val)
+#define GLLP(val) llGetListLength(val)
+#define GLLN(val) -llGetListLength(val)
+#endif // MONO_MEM
+#else // MONO
+#define GLL(val) llGetListLength(val)
+#endif // MONO
+
+#define CSV2L(val) llCSV2List(val)
+#define L2CSV(val) llList2CSV(val)
+#define DL2S(val, sep) llDumpList2String(val, sep) 
+
+#define L2F(val, index) llList2Float(val, index)
+#define L2I(val, index) llList2Integer(val, index)
+#define L2K(val, index) llList2Key(val, index)
+#define L2R(val, index) llList2Rot(val, index)
+#define L2S(val, index) llList2String(val, index)
+#define L2V(val, index) llList2Vector(val, index)
+
+#define L2L(val, from, to) llList2List(val, from, to)
+#define L2LI(val, index) llList2List(val, index, index)
+#define L2LS(val, start, end, stride) llList2ListStrided(val, start, end, stride)
+
+#define LRL(dest, by, from, to) llListReplaceList(dest, by, from, to)
+#define LRLI(dest, by, index) llListReplaceList(dest, by, index, index)
+
+#define LFL(src, path) llListFindList(src, path)
+
+#define PS2L(src, sep, space) llParseString2List(src, sep, space)
+#define PSKN(src, sep, space) llParseStringKeepNulls(src, sep, space) 
+
+#endif

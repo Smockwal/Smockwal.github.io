@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta NAME="ROBOTS" CONTENT="NOODP">
+</head>
+
+<body>
+    <style type="text/css">
+        body {
+            background: rgb(34, 34, 34);
+            margin: 0rem;
+            min-height: 100vh;
+            font-family: Futura, sans-serif;
+        }
+
+        #canvas,
+        #text {
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        #text {
+            min-height: 100vh;
+            width: 100vw;
+            z-index: 1;
+            color: #fff;
+            
+            text-transform: uppercase;
+            font-size: 8vmin;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #selector {
+            padding-top: 10vh;
+            padding-bottom: 10vh;
+            padding-left: 30vh;
+            padding-right: 30vh;
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+
+        #text h1 {
+            opacity: 0.9
+        }
+        
+        .linkb {
+            align-items: center;
+            background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+            border: 0;
+            border-radius: 8px;
+            box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            display: flex;
+            font-family: Phantomsans, sans-serif;
+            font-size: 20px;
+            justify-content: center;
+            line-height: 1em;
+            max-width: 100%;
+            min-width: 140px;
+            padding: 3px;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .linkb:active,
+        .linkb:hover {
+            outline: 0;
+        }
+
+        .linkb span {
+            background-color: rgb(5, 6, 45);
+            padding: 16px 24px;
+            border-radius: 6px;
+            width: 100%;
+            height: 100%;
+            transition: 300ms;
+        }
+
+        .linkb:hover span {
+            background: none;
+        }
+
+        @media (min-width: 768px) {
+            .linkb {
+                font-size: 24px;
+                min-width: 196px;
+            }
+        }
+    </style>
+
+    <div style="display:none">
+        <a id="editor_link" href="./app/editor/editor.html"></a>"
+    </div>
+    <canvas id="canvas"></canvas>
+    <div id="text">
+        <div id="selector">
+            <button id="editor_btn" class="linkb" role="button"><span class="text">Code</span></button><br />
+            <!--<button class="linkb" role="button"><span class="text">Button 64</span></button> --><br />
+            <!--<button class="linkb" role="button"><span class="text">Button 64</span></button>--><br />
+            <!--<button class="linkb" role="button"><span class="text">Button 64</span></button>-->
+        </div>
+
+    </div>
+
+    <script type="module" src="./app/landing/main.js"></script>
+    <script>
+        document.getElementById("editor_btn").addEventListener("click", () => {
+            document.getElementById("editor_link").click();
+        });
+    </script>
+</body>
+
+</html>

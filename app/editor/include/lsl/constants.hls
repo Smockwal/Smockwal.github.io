@@ -1,0 +1,1304 @@
+/*Objects in world that are running a script or currently physically moving.*/
+#define ACTIVE 0x2
+/*Objects in world that are agents.*/
+#define AGENT 0x1
+#define AGENT_ALWAYS_RUN 0x1000
+/*The agent has attachments.*/
+#define AGENT_ATTACHMENTS 0x2
+#define AGENT_AUTOPILOT 0x2000
+#define AGENT_AWAY 0x40
+#define AGENT_BUSY 0x800
+#define AGENT_BY_LEGACY_NAME 0x1
+#define AGENT_BY_USERNAME 0x10
+#define AGENT_CROUCHING 0x400
+/*The agent is flying.*/
+#define AGENT_FLYING 0x1
+#define AGENT_IN_AIR 0x100
+/*Agents on the same parcel where the script is running.*/
+#define AGENT_LIST_PARCEL 0x1
+/*Agents on any parcel in the region where the parcel owner is the same as the owner of the parcel under the scripted object.*/
+#define AGENT_LIST_PARCEL_OWNER 0x2
+/*All agents in the region.*/
+#define AGENT_LIST_REGION 0x4
+#define AGENT_MOUSELOOK 0x8
+#define AGENT_ON_OBJECT 0x20
+/*The agent has scripted attachments.*/
+#define AGENT_SCRIPTED 0x4
+#define AGENT_SITTING 0x10
+#define AGENT_TYPING 0x200
+#define AGENT_WALKING 0x80
+#define ALL_SIDES 0xFFFFFFFF
+/*Texture animation is on.*/
+#define ANIM_ON 0x1
+/*Attach to the avatar's geometric centre.*/
+#define ATTACH_AVATAR_CENTER 0x28
+/*Attach to the avatar's back.*/
+#define ATTACH_BACK 0x9
+/*Attach to the avatar's belly.*/
+#define ATTACH_BELLY 0x1C
+/*Attach to the avatar's chest.*/
+#define ATTACH_CHEST 0x1
+/*Attach to the avatar's chin.*/
+#define ATTACH_CHIN 0xC
+/*Attach to the avatar's jaw.*/
+#define ATTACH_FACE_JAW 0x2F
+/*Attach to the avatar's left ear (extended).*/
+#define ATTACH_FACE_LEAR 0x30
+/*Attach to the avatar's left eye (extended).*/
+#define ATTACH_FACE_LEYE 0x32
+/*Attach to the avatar's right ear (extended).*/
+#define ATTACH_FACE_REAR 0x31
+/*Attach to the avatar's right eye (extended).*/
+#define ATTACH_FACE_REYE 0x33
+/*Attach to the avatar's tongue.*/
+#define ATTACH_FACE_TONGUE 0x34
+/*Attach to the avatar's groin.*/
+#define ATTACH_GROIN 0x35
+/*Attach to the avatar's head.*/
+#define ATTACH_HEAD 0x2
+/*Attach to the avatar's left hind foot.*/
+#define ATTACH_HIND_LFOOT 0x36
+/*Attach to the avatar's right hind foot.*/
+#define ATTACH_HIND_RFOOT 0x37
+#define ATTACH_HUD_BOTTOM 0x25
+#define ATTACH_HUD_BOTTOM_LEFT 0x24
+#define ATTACH_HUD_BOTTOM_RIGHT 0x26
+#define ATTACH_HUD_CENTER_1 0x23
+#define ATTACH_HUD_CENTER_2 0x1F
+#define ATTACH_HUD_TOP_CENTER 0x21
+#define ATTACH_HUD_TOP_LEFT 0x22
+#define ATTACH_HUD_TOP_RIGHT 0x20
+/*Attach to the avatar's left ear.*/
+#define ATTACH_LEAR 0xD
+/*Attach to the avatar's left pectoral.*/
+#define ATTACH_LEFT_PEC 0x1D
+/*Attach to the avatar's left eye.*/
+#define ATTACH_LEYE 0xF
+/*Attach to the avatar's left foot.*/
+#define ATTACH_LFOOT 0x7
+/*Attach to the avatar's left hand.*/
+#define ATTACH_LHAND 0x5
+/*Attach to the avatar's left ring finger.*/
+#define ATTACH_LHAND_RING1 0x29
+/*Attach to the avatar's left hip.*/
+#define ATTACH_LHIP 0x19
+/*Attach to the avatar's left lower arm.*/
+#define ATTACH_LLARM 0x15
+/*Attach to the avatar's lower left leg.*/
+#define ATTACH_LLLEG 0x1B
+/*Attach to the avatar's right pectoral. (Deprecated, use ATTACH_RIGHT_PEC)*/
+#define ATTACH_LPEC 0x1E
+/*Attach to the avatar's left shoulder.*/
+#define ATTACH_LSHOULDER 0x3
+/*Attach to the avatar's left upper arm.*/
+#define ATTACH_LUARM 0x14
+/*Attach to the avatar's lower upper leg.*/
+#define ATTACH_LULEG 0x1A
+/*Attach to the avatar's left wing.*/
+#define ATTACH_LWING 0x2D
+/*Attach to the avatar's mouth.*/
+#define ATTACH_MOUTH 0xB
+/*Attach to the avatar's neck.*/
+#define ATTACH_NECK 0x27
+/*Attach to the avatar's nose.*/
+#define ATTACH_NOSE 0x11
+/*Attach to the avatar's pelvis.*/
+#define ATTACH_PELVIS 0xA
+/*Attach to the avatar's right ear.*/
+#define ATTACH_REAR 0xE
+/*Attach to the avatar's right eye.*/
+#define ATTACH_REYE 0x10
+/*Attach to the avatar's right foot.*/
+#define ATTACH_RFOOT 0x8
+/*Attach to the avatar's right hand.*/
+#define ATTACH_RHAND 0x6
+/*Attach to the avatar's right ring finger.*/
+#define ATTACH_RHAND_RING1 0x2A
+/*Attach to the avatar's right hip.*/
+#define ATTACH_RHIP 0x16
+/*Attach to the avatar's right pectoral.*/
+#define ATTACH_RIGHT_PEC 0x1E
+/*Attach to the avatar's right lower arm.*/
+#define ATTACH_RLARM 0x13
+/*Attach to the avatar's right lower leg.*/
+#define ATTACH_RLLEG 0x18
+/*Attach to the avatar's left pectoral. (deprecated, use ATTACH_LEFT_PEC)*/
+#define ATTACH_RPEC 0x1D
+/*Attach to the avatar's right shoulder.*/
+#define ATTACH_RSHOULDER 0x4
+/*Attach to the avatar's right upper arm.*/
+#define ATTACH_RUARM 0x12
+/*Attach to the avatar's right upper leg.*/
+#define ATTACH_RULEG 0x17
+/*Attach to the avatar's right wing.*/
+#define ATTACH_RWING 0x2E
+/*Attach to the avatar's tail base.*/
+#define ATTACH_TAIL_BASE 0x2B
+/*Attach to the avatar's tail tip.*/
+#define ATTACH_TAIL_TIP 0x2C
+#define AVOID_CHARACTERS 0x1
+#define AVOID_DYNAMIC_OBSTACLES 0x2
+#define AVOID_NONE 0x0
+#define CAMERA_ACTIVE 0xC
+#define CAMERA_BEHINDNESS_ANGLE 0x8
+#define CAMERA_BEHINDNESS_LAG 0x9
+#define CAMERA_DISTANCE 0x7
+#define CAMERA_FOCUS 0x11
+#define CAMERA_FOCUS_LAG 0x6
+#define CAMERA_FOCUS_LOCKED 0x16
+#define CAMERA_FOCUS_OFFSET 0x1
+#define CAMERA_FOCUS_THRESHOLD 0xB
+#define CAMERA_PITCH 0x0
+#define CAMERA_POSITION 0xD
+#define CAMERA_POSITION_LAG 0x5
+#define CAMERA_POSITION_LOCKED 0x15
+#define CAMERA_POSITION_THRESHOLD 0xA
+/*The object inventory has changed because an item was added through the llAllowInventoryDrop interface.*/
+#define CHANGED_ALLOWED_DROP 0x40
+/*The object color has changed.*/
+#define CHANGED_COLOR 0x2
+/*The object inventory has changed.*/
+#define CHANGED_INVENTORY 0x1
+/*The object has linked or its links were broken.*/
+#define CHANGED_LINK 0x20
+#define CHANGED_MEDIA 0x800
+#define CHANGED_OWNER 0x80
+#define CHANGED_REGION 0x100
+#define CHANGED_REGION_START 0x400
+/*The object scale (size) has changed.*/
+#define CHANGED_SCALE 0x8
+/*The object base shape has changed, e.g., a box to a cylinder.*/
+#define CHANGED_SHAPE 0x4
+#define CHANGED_TELEPORT 0x200
+/*The texture offset, scale rotation, or simply the object texture has changed.*/
+#define CHANGED_TEXTURE 0x10
+/*If set to false, character will not attempt to catch up on lost time when pathfinding performance is low, potentially providing more reliable movement (albeit while potentially appearing to be more stuttery). Default is true to match pre-existing behavior.*/
+#define CHARACTER_ACCOUNT_FOR_SKIPPED_FRAMES 0xE
+/*Allows you to specify that a character should not try to avoid other characters, should not try to avoid dynamic obstacles (relatively fast moving objects and avatars), or both.*/
+#define CHARACTER_AVOIDANCE_MODE 0x5
+/*Makes the character jump. Requires an additional parameter, the height to jump, between 0.1m and 2.0m. This must be provided as the first element of the llExecCharacterCmd option list.*/
+#define CHARACTER_CMD_JUMP 0x1
+#define CHARACTER_CMD_SMOOTH_STOP 0x2
+/*Stops any current pathfinding operation.*/
+#define CHARACTER_CMD_STOP 0x0
+/*Speed of pursuit in meters per second.*/
+#define CHARACTER_DESIRED_SPEED 0x1
+/*The character's maximum speed while turning about the Z axis. - Note that this is only loosely enforced.*/
+#define CHARACTER_DESIRED_TURN_SPEED 0xC
+/*Set collision capsule length - cannot be less than two times the radius.*/
+#define CHARACTER_LENGTH 0x3
+/*The character's maximum acceleration rate.*/
+#define CHARACTER_MAX_ACCEL 0x8
+/*The character's maximum deceleration rate.*/
+#define CHARACTER_MAX_DECEL 0x9
+/*The character's maximum speed.*/
+#define CHARACTER_MAX_SPEED 0xD
+/*The character's turn radius when travelling at CHARACTER_MAX_TURN_SPEED.*/
+#define CHARACTER_MAX_TURN_RADIUS 0xA
+/*Valid options are: VERTICAL, HORIZONTAL.*/
+#define CHARACTER_ORIENTATION 0x4
+/*Set collision capsule radius.*/
+#define CHARACTER_RADIUS 0x2
+/*Determines whether a character can leave its starting parcel.\nTakes a boolean parameter. If TRUE, the character cannot voluntarilly leave the parcel, but can return to it.*/
+#define CHARACTER_STAY_WITHIN_PARCEL 0xF
+/*Specifies which walk-ability coefficient will be used by this character.*/
+#define CHARACTER_TYPE 0x6
+#define CHARACTER_TYPE_A 0x0
+#define CHARACTER_TYPE_B 0x1
+#define CHARACTER_TYPE_C 0x2
+#define CHARACTER_TYPE_D 0x3
+#define CHARACTER_TYPE_NONE 0x4
+/*When the prim is clicked, the buy dialog is opened.*/
+#define CLICK_ACTION_BUY 0x2
+/*No click action. No touches detected or passed.*/
+#define CLICK_ACTION_DISABLED 0x8
+/*Performs the default action: when the prim is clicked, touch events are triggered.*/
+#define CLICK_ACTION_NONE 0x0
+/*When the prim is clicked, the object inventory dialog is opened.*/
+#define CLICK_ACTION_OPEN 0x4
+/*When the prim is touched, the web media dialog is opened.*/
+#define CLICK_ACTION_OPEN_MEDIA 0x6
+/*When the prim is clicked, the pay dialog is opened.*/
+#define CLICK_ACTION_PAY 0x3
+/*When the prim is clicked, html-on-a-prim is enabled?*/
+#define CLICK_ACTION_PLAY 0x5
+/*When the prim is clicked, the avatar sits upon it.*/
+#define CLICK_ACTION_SIT 0x1
+/*When the prim is clicked, touch events are triggered.*/
+#define CLICK_ACTION_TOUCH 0x0
+/*Zoom in on object when clicked.*/
+#define CLICK_ACTION_ZOOM 0x7
+/*"application/atom+xml"*/
+#define CONTENT_TYPE_ATOM 0x4
+/*"application/x-www-form-urlencoded"*/
+#define CONTENT_TYPE_FORM 0x7
+/*"text/html", only valid for embedded browsers on content owned by the person viewing. Falls back to "text/plain" otherwise.*/
+#define CONTENT_TYPE_HTML 0x1
+/*"application/json"*/
+#define CONTENT_TYPE_JSON 0x5
+/*"application/llsd+xml"*/
+#define CONTENT_TYPE_LLSD 0x6
+/*"application/rss+xml"*/
+#define CONTENT_TYPE_RSS 0x8
+/*"text/plain"*/
+#define CONTENT_TYPE_TEXT 0x0
+/*"application/xhtml+xml"*/
+#define CONTENT_TYPE_XHTML 0x3
+/*"application/xml"*/
+#define CONTENT_TYPE_XML 0x2
+/*Test for the avatar move back control.*/
+#define CONTROL_BACK 0x2
+/*Test for the avatar move down control.*/
+#define CONTROL_DOWN 0x20
+/*Test for the avatar move forward control.*/
+#define CONTROL_FWD 0x1
+/*Test for the avatar left button control.*/
+#define CONTROL_LBUTTON 0x10000000
+/*Test for the avatar move left control.*/
+#define CONTROL_LEFT 0x4
+/*Test for the avatar left button control while in mouse look.*/
+#define CONTROL_ML_LBUTTON 0x40000000
+/*Test for the avatar move right control.*/
+#define CONTROL_RIGHT 0x8
+/*Test for the avatar rotate left control.*/
+#define CONTROL_ROT_LEFT 0x100
+/*Test for the avatar rotate right control.*/
+#define CONTROL_ROT_RIGHT 0x200
+/*Test for the avatar move up control.*/
+#define CONTROL_UP 0x10
+/*The date the agent was born, returned in ISO 8601 format of YYYY-MM-DD.*/
+#define DATA_BORN 0x3
+/*The name of the agent.*/
+#define DATA_NAME 0x2
+/*TRUE for online, FALSE for offline.*/
+#define DATA_ONLINE 0x1
+#define DATA_PAYINFO 0x8
+/*Returns the agent ratings as a comma separated string of six integers. They are:
+			1) Positive rated behaviour
+			2) Negative rated behaviour
+			3) Positive rated appearance
+			4) Negative rated appearance
+			5) Positive rated building
+			6) Negative rated building*/
+#define DATA_RATING 0x4
+#define DATA_SIM_POS 0x5
+#define DATA_SIM_RATING 0x7
+#define DATA_SIM_STATUS 0x6
+/*DEBUG_CHANNEL is an integer constant that, when passed to llSay, llWhisper, or llShout as a channel parameter, will print text to the Script Warning/Error Window.*/
+#define DEBUG_CHANNEL 0x7FFFFFFF
+/*0.017453293 - Number of radians per degree.
+			You can use this to convert degrees to radians by multiplying the degrees by this number.*/
+#define DEG_TO_RAD 0.01745329300000000166681602
+/*Used with llSetPhysicsMaterial to enable the density value. Must be between 1.0 and 22587.0 (in Kg/m^3 -- see if you can figure out what 22587 represents)*/
+#define DENSITY 0x1
+/*Day length, offset and progression.*/
+#define ENVIRONMENT_DAYINFO 0xC8
+/*Could not find agent with the specified ID*/
+#define ENV_INVALID_AGENT 0xFFFFFFFC
+/*Attempted to change an unknown property.*/
+#define ENV_INVALID_RULE 0xFFFFFFFC
+/*Attempt to change environments outside an experience.*/
+#define ENV_NOT_EXPERIENCE 0xFFFFFFFF
+/*Could not find environmental settings in object inventory.*/
+#define ENV_NO_ENVIRONMENT 0xFFFFFFFD
+/*The experience has not been enabled on this land.*/
+#define ENV_NO_EXPERIENCE_LAND 0xFFFFFFF9
+/*Agent has not granted permission to change environments.*/
+#define ENV_NO_EXPERIENCE_PERMISSION 0xFFFFFFFE
+/*Script does not have permission to modify environment.*/
+#define ENV_NO_PERMISSIONS 0xFFFFFFF7
+/*Could not validate values for environment.*/
+#define ENV_THROTTLE 0xFFFFFFF8
+/*Could not validate values for environment.*/
+#define ENV_VALIDATION_FAIL 0xFFFFFFFC
+/*Indicates the last line of a notecard was read.*/
+#define EOF "\\n\\n\\n"
+#define ERR_GENERIC 0xFFFFFFFF
+#define ERR_MALFORMED_PARAMS 0xFFFFFFFD
+#define ERR_PARCEL_PERMISSIONS 0xFFFFFFFE
+#define ERR_RUNTIME_PERMISSIONS 0xFFFFFFFC
+#define ERR_THROTTLED 0xFFFFFFFB
+/*Add the agent to this estate's Allowed Residents list.*/
+#define ESTATE_ACCESS_ALLOWED_AGENT_ADD 0x4
+/*Remove the agent from this estate's Allowed Residents list.*/
+#define ESTATE_ACCESS_ALLOWED_AGENT_REMOVE 0x8
+/*Add the group to this estate's Allowed groups list.*/
+#define ESTATE_ACCESS_ALLOWED_GROUP_ADD 0x10
+/*Remove the group from this estate's Allowed groups list.*/
+#define ESTATE_ACCESS_ALLOWED_GROUP_REMOVE 0x20
+/*Add the agent to this estate's Banned residents list.*/
+#define ESTATE_ACCESS_BANNED_AGENT_ADD 0x40
+/*Remove the agent from this estate's Banned residents list.*/
+#define ESTATE_ACCESS_BANNED_AGENT_REMOVE 0x80
+/*An integer constant for boolean comparisons. Has the value '0'.*/
+#define FALSE 0x0
+/*Makes character navigate in a straight line toward position. May be set to TRUE or FALSE.*/
+#define FORCE_DIRECT_PATH 0x1
+/*Used with llSetPhysicsMaterial to enable the friction value. Must be between 0.0 and 255.0*/
+#define FRICTION 0x2
+#define GCNP_RADIUS 0x0
+#define GCNP_STATIC 0x1
+/*Used with llSetPhysicsMaterial to enable the gravity multiplier value. Must be between -1.0 and +28.0*/
+#define GRAVITY_MULTIPLIER 0x8
+#define HORIZONTAL 0x1
+/*Provide a string value to be included in the HTTP
+            accepts header value. This replaces the default Second Life HTTP accepts header.*/
+#define HTTP_ACCEPT 0x8
+#define HTTP_BODY_MAXLENGTH 0x2
+#define HTTP_BODY_TRUNCATED 0x0
+/*Add an extra custom HTTP header to the request. The first string is the name of the parameter to change, e.g. "Pragma", and the second string is the value, e.g. "no-cache". Up to 8 custom headers may be configured per request. Note that certain headers, such as the default headers, are blocked for security reasons.*/
+#define HTTP_CUSTOM_HEADER 0x5
+/*Report extended error information through http_response event.*/
+#define HTTP_EXTENDED_ERROR 0x9
+#define HTTP_METHOD 0x0
+#define HTTP_MIMETYPE 0x1
+/*Allows enabling/disbling of the "Pragma: no-cache" header.\nUsage: [HTTP_PRAGMA_NO_CACHE, integer SendHeader]. When SendHeader is TRUE, the "Pragma: no-cache" header is sent by the script. This matches the default behavior. When SendHeader is FALSE, no "Pragma" header is sent by the script.*/
+#define HTTP_PRAGMA_NO_CACHE 0x6
+/*Provide a string value to be included in the HTTP
+            User-Agent header value. This is appended to the default value.*/
+#define HTTP_USER_AGENT 0x7
+#define HTTP_VERBOSE_THROTTLE 0x4
+#define HTTP_VERIFY_CERT 0x3
+#define IMG_USE_BAKED_AUX1 "9742065b-19b5-297c-858a-29711d539043"
+#define IMG_USE_BAKED_AUX2 "03642e83-2bd1-4eb9-34b4-4c47ed586d2d"
+#define IMG_USE_BAKED_AUX3 "edd51b77-fc10-ce7a-4b3d-011dfc349e4f"
+#define IMG_USE_BAKED_EYES "52cc6bb6-2ee5-e632-d3ad-50197b1dcb8a"
+#define IMG_USE_BAKED_HAIR "09aac1fb-6bce-0bee-7d44-caac6dbb6c63"
+#define IMG_USE_BAKED_HEAD "5a9f4a74-30f2-821c-b88d-70499d3e7183"
+#define IMG_USE_BAKED_LEFTARM "ff62763f-d60a-9855-890b-0c96f8f8cd98"
+#define IMG_USE_BAKED_LEFTLEG "8e915e25-31d1-cc95-ae08-d58a47488251"
+#define IMG_USE_BAKED_LOWER "24daea5f-0539-cfcf-047f-fbc40b2786ba"
+#define IMG_USE_BAKED_SKIRT "43529ce8-7faa-ad92-165a-bc4078371687"
+#define IMG_USE_BAKED_UPPER "ae2de45c-d252-50b8-5c6e-19f39ce79317"
+#define INVENTORY_ALL 0xFFFFFFFF
+#define INVENTORY_ANIMATION 0x14
+#define INVENTORY_BODYPART 0xD
+#define INVENTORY_CLOTHING 0x5
+#define INVENTORY_GESTURE 0x15
+#define INVENTORY_LANDMARK 0x3
+#define INVENTORY_NONE 0xFFFFFFFF
+#define INVENTORY_NOTECARD 0x7
+#define INVENTORY_OBJECT 0x6
+#define INVENTORY_SCRIPT 0xA
+#define INVENTORY_SETTING 0x38
+#define INVENTORY_SOUND 0x1
+#define INVENTORY_TEXTURE 0x0
+#define JSON_APPEND 0xFFFFFFFF
+#define JSON_ARRAY "﷒"
+#define JSON_DELETE "﷘"
+#define JSON_FALSE "﷗"
+#define JSON_INVALID "﷐"
+#define JSON_NULL "﷕"
+#define JSON_NUMBER "﷓"
+#define JSON_OBJECT "﷑"
+#define JSON_STRING "﷔"
+#define JSON_TRUE "﷖"
+/*For use with KFM_COMMAND.*/
+#define KFM_CMD_PAUSE 0x2
+/*For use with KFM_COMMAND.*/
+#define KFM_CMD_PLAY 0x0
+/*For use with KFM_COMMAND.*/
+#define KFM_CMD_STOP 0x1
+#define KFM_COMMAND 0x0
+#define KFM_DATA 0x2
+/*For use with KFM_MODE.*/
+#define KFM_FORWARD 0x0
+/*For use with KFM_MODE.*/
+#define KFM_LOOP 0x1
+#define KFM_MODE 0x1
+/*For use with KFM_MODE.*/
+#define KFM_PING_PONG 0x2
+/*For use with KFM_MODE.*/
+#define KFM_REVERSE 0x3
+/*For use with KFM_DATA.*/
+#define KFM_ROTATION 0x1
+/*For use with KFM_DATA.*/
+#define KFM_TRANSLATION 0x2
+/*Use a large brush size.\nNOTE: This value is incorrect, a large brush should be 2.*/
+#define LAND_LARGE_BRUSH 0x3
+/*Action to level the land.*/
+#define LAND_LEVEL 0x0
+/*Action to lower the land.*/
+#define LAND_LOWER 0x2
+/*Use a medium brush size.\nNOTE: This value is incorrect, a medium brush should be 1.*/
+#define LAND_MEDIUM_BRUSH 0x2
+#define LAND_NOISE 0x4
+/*Action to raise the land.*/
+#define LAND_RAISE 0x1
+#define LAND_REVERT 0x5
+/*Use a small brush size.\nNOTE: This value is incorrect, a small brush should be 0.*/
+#define LAND_SMALL_BRUSH 0x1
+#define LAND_SMOOTH 0x3
+/*A name:value pair has been removed from the linkset datastore.*/
+#define LINKSETDATA_DELETE 0x2
+/*A name:value pair was too large to write to the linkset datastore.*/
+#define LINKSETDATA_EMEMORY 0x1
+/*The key supplied was empty.*/
+#define LINKSETDATA_ENOKEY 0x2
+/*The name:value pair has been protected from overwrite in the linkset datastore.*/
+#define LINKSETDATA_EPROTECTED 0x3
+/*The named key was not found in the datastore.*/
+#define LINKSETDATA_NOTFOUND 0x4
+/*The value written to a name in the keystore is the same as the value already there.*/
+#define LINKSETDATA_NOUPDATE 0x5
+/*The name:value pair was written to the datastore.*/
+#define LINKSETDATA_OK 0x0
+/*The linkset datastore has been reset.*/
+#define LINKSETDATA_RESET 0x0
+/*A name:value pair in the linkset datastore has been changed or created.*/
+#define LINKSETDATA_UPDATE 0x1
+/*This targets every object except the root in the linked set.*/
+#define LINK_ALL_CHILDREN 0xFFFFFFFD
+/*This targets every object in the linked set except the object with the script.*/
+#define LINK_ALL_OTHERS 0xFFFFFFFE
+/*This targets the root of the linked set.*/
+#define LINK_ROOT 0x1
+/*This targets every object in the linked set.*/
+#define LINK_SET 0xFFFFFFFF
+/*The link number of the prim containing the script.*/
+#define LINK_THIS 0xFFFFFFFC
+#define LIST_STAT_GEOMETRIC_MEAN 0x9
+#define LIST_STAT_MAX 0x2
+#define LIST_STAT_MEAN 0x3
+#define LIST_STAT_MEDIAN 0x4
+#define LIST_STAT_MIN 0x1
+#define LIST_STAT_NUM_COUNT 0x8
+#define LIST_STAT_RANGE 0x0
+#define LIST_STAT_STD_DEV 0x5
+#define LIST_STAT_SUM 0x6
+#define LIST_STAT_SUM_SQUARES 0x7
+/*Loop the texture animation.*/
+#define LOOP 0x2
+#define MASK_BASE 0x0
+#define MASK_EVERYONE 0x3
+#define MASK_GROUP 0x2
+#define MASK_NEXT 0x4
+#define MASK_OWNER 0x1
+#define NULL_KEY ""
+/*Retrieves the account level of an avatar.\nReturns 0 when the avatar has a basic account,\n 1 when the avatar has a premium account,\n 10 when the avatar has a premium plus account,\n or -1 if the object is not an avatar.*/
+#define OBJECT_ACCOUNT_LEVEL 0x29
+/*This is a flag used with llGetObjectDetails to get the number of associated animated objects*/
+#define OBJECT_ANIMATED_COUNT 0x27
+/*This is a flag used with llGetObjectDetails to get the number of additional animated object attachments allowed.*/
+#define OBJECT_ANIMATED_SLOTS_AVAILABLE 0x28
+/*Gets the attachment point to which the object is attached.\nReturns 0 if the object is not an attachment (or is an avatar, etc).*/
+#define OBJECT_ATTACHED_POINT 0x13
+/*Returns the number of attachment slots available.\nReturns 0 if the object is not an avatar or none are available.*/
+#define OBJECT_ATTACHED_SLOTS_AVAILABLE 0x23
+/*This is a flag used with llGetObjectDetails to get the body type of the avatar, based on shape data.\nIf no data is available, -1.0 is returned.\nThis is normally between 0 and 1.0, with 0.5 and larger considered 'male'*/
+#define OBJECT_BODY_SHAPE_TYPE 0x1A
+/*Units in seconds*/
+#define OBJECT_CHARACTER_TIME 0x11
+/*This is a flag used with llGetObjectDetails to get the click action.\nThe default is 0*/
+#define OBJECT_CLICK_ACTION 0x1C
+/*This is a flag used with llGetObjectDetails to get the time this object was created*/
+#define OBJECT_CREATION_TIME 0x24
+/*Gets the object's creator key. If id is an avatar, a NULL_KEY is returned.*/
+#define OBJECT_CREATOR 0x8
+/*Gets the object's description. If id is an avatar, an empty string is returned.*/
+#define OBJECT_DESC 0x2
+/*Gets the prims's group key. If id is an avatar, a NULL_KEY is returned.*/
+#define OBJECT_GROUP 0x7
+/*Gets the agent's current group role tag. If id is an object, an empty is returned.*/
+#define OBJECT_GROUP_TAG 0x21
+/*This is a flag used with llGetObjectDetails to get hover height of the avatar\nIf no data is available, 0.0 is returned.*/
+#define OBJECT_HOVER_HEIGHT 0x19
+/*Gets the object's last owner ID.*/
+#define OBJECT_LAST_OWNER_ID 0x1B
+/*Gets the object's link number or 0 if unlinked.*/
+#define OBJECT_LINK_NUMBER 0x2E
+/*Get the object's mass*/
+#define OBJECT_MASS 0x2B
+/*Get an object's material setting.*/
+#define OBJECT_MATERIAL 0x2A
+/*Gets the object's name.*/
+#define OBJECT_NAME 0x1
+/*Gets an object's angular velocity.*/
+#define OBJECT_OMEGA 0x1D
+/*Gets an object's owner's key. If id is group owned, a NULL_KEY is returned.*/
+#define OBJECT_OWNER 0x6
+/*Returns the pathfinding setting of any object in the region. It returns an integer matching one of the OPT_* constants.*/
+#define OBJECT_PATHFINDING_TYPE 0x14
+/*Returns boolean, detailing if phantom is enabled or disabled on the object.\nIf id is an avatar or attachment, 0 is returned.*/
+#define OBJECT_PHANTOM 0x16
+/*Returns boolean, detailing if physics is enabled or disabled on the object.\nIf id is an avatar or attachment, 0 is returned.*/
+#define OBJECT_PHYSICS 0x15
+#define OBJECT_PHYSICS_COST 0x10
+/*Gets the object's position in region coordinates.*/
+#define OBJECT_POS 0x3
+/*Gets the prim count of the object.  The script and target object  must be owned by the same owner*/
+#define OBJECT_PRIM_COUNT 0x1E
+#define OBJECT_PRIM_EQUIVALENCE 0xD
+/*This is a flag used with llGetObjectDetails to get the Avatar_Rendering_Cost of an avatar, based on values reported by nearby viewers.\nIf no data is available, -1 is returned.\nThe maximum render weight stored by the simulator is 500000. When called against an object, 0 is returned.*/
+#define OBJECT_RENDER_WEIGHT 0x18
+#define OBJECT_RETURN_PARCEL 0x1
+#define OBJECT_RETURN_PARCEL_OWNER 0x2
+#define OBJECT_RETURN_REGION 0x4
+#define OBJECT_REZZER_KEY 0x20
+/*Get the time when an object was rezzed.*/
+#define OBJECT_REZ_TIME 0x2D
+/*Gets the id of the root prim of the object requested.\nIf id is an avatar, return the id of the root prim of the linkset the avatar is sitting on (or the avatar's own id if the avatar is not sitting on an object within the region).*/
+#define OBJECT_ROOT 0x12
+/*Gets the object's rotation.*/
+#define OBJECT_ROT 0x4
+#define OBJECT_RUNNING_SCRIPT_COUNT 0x9
+/*Gets the object's size.*/
+#define OBJECT_SCALE 0x2F
+#define OBJECT_SCRIPT_MEMORY 0xB
+#define OBJECT_SCRIPT_TIME 0xC
+/*This is a flag used with llGetObjectDetails to get the number of avatars selecting any part of the object*/
+#define OBJECT_SELECT_COUNT 0x25
+#define OBJECT_SERVER_COST 0xE
+/*This is a flag used with llGetObjectDetails to get the number of avatars sitting on the object*/
+#define OBJECT_SIT_COUNT 0x26
+#define OBJECT_STREAMING_COST 0xF
+/*Returns boolean, indicating if object is a temp attachment.*/
+#define OBJECT_TEMP_ATTACHED 0x22
+/*Returns boolean, detailing if temporary is enabled or disabled on the object.*/
+#define OBJECT_TEMP_ON_REZ 0x17
+/*Gets an objects hover text.*/
+#define OBJECT_TEXT 0x2C
+/*Gets the alpha of an objects hover text.*/
+#define OBJECT_TEXT_ALPHA 0x31
+/*Gets the color of an objects hover text.*/
+#define OBJECT_TEXT_COLOR 0x30
+/*Gets the total inventory count of the object.  The script and target object must be owned by the same owner*/
+#define OBJECT_TOTAL_INVENTORY_COUNT 0x1F
+#define OBJECT_TOTAL_SCRIPT_COUNT 0xA
+#define OBJECT_UNKNOWN_DETAIL 0xFFFFFFFF
+/*Gets the object's velocity.*/
+#define OBJECT_VELOCITY 0x5
+/*Returned for avatars.*/
+#define OPT_AVATAR 0x1
+/*Returned for pathfinding characters.*/
+#define OPT_CHARACTER 0x2
+/*Returned for exclusion volumes.*/
+#define OPT_EXCLUSION_VOLUME 0x6
+/*Returned for movable obstacles, movable phantoms, physical, and volumedetect objects.*/
+#define OPT_LEGACY_LINKSET 0x0
+/*Returned for material volumes.*/
+#define OPT_MATERIAL_VOLUME 0x5
+/*Returned for attachments, Linden trees, and grass.*/
+#define OPT_OTHER 0xFFFFFFFF
+/*Returned for static obstacles.*/
+#define OPT_STATIC_OBSTACLE 0x4
+/*Returned for walkable objects.*/
+#define OPT_WALKABLE 0x3
+#define PARCEL_COUNT_GROUP 0x2
+#define PARCEL_COUNT_OTHER 0x3
+#define PARCEL_COUNT_OWNER 0x1
+#define PARCEL_COUNT_SELECTED 0x4
+#define PARCEL_COUNT_TEMP 0x5
+#define PARCEL_COUNT_TOTAL 0x0
+/*The parcel's area, in square meters. (5 chars.).*/
+#define PARCEL_DETAILS_AREA 0x4
+/*The description of the parcel. (127 chars).*/
+#define PARCEL_DETAILS_DESC 0x1
+/*Flags set on the parcel*/
+#define PARCEL_DETAILS_FLAGS 0xC
+/*The parcel group's key. (36 chars.).*/
+#define PARCEL_DETAILS_GROUP 0x3
+/*The parcel's key. (36 chars.).*/
+#define PARCEL_DETAILS_ID 0x5
+/*Lookat vector set for teleport routing.*/
+#define PARCEL_DETAILS_LANDING_LOOKAT 0xA
+/*The parcel's landing point, if any.*/
+#define PARCEL_DETAILS_LANDING_POINT 0x9
+/*The name of the parcel. (63 chars.).*/
+#define PARCEL_DETAILS_NAME 0x0
+/*The parcel owner's key. (36 chars.).*/
+#define PARCEL_DETAILS_OWNER 0x2
+/*The parcel's prim capacity.*/
+#define PARCEL_DETAILS_PRIM_CAPACITY 0x7
+/*The number of prims used on this parcel.*/
+#define PARCEL_DETAILS_PRIM_USED 0x8
+/*There are restrictions on this parcel that may impact script execution.*/
+#define PARCEL_DETAILS_SCRIPT_DANGER 0xD
+/*The parcel's avatar visibility setting. (1 char.).*/
+#define PARCEL_DETAILS_SEE_AVATARS 0x6
+/*Parcel's teleport routing setting.*/
+#define PARCEL_DETAILS_TP_ROUTING 0xB
+#define PARCEL_FLAG_ALLOW_ALL_OBJECT_ENTRY 0x8000000
+#define PARCEL_FLAG_ALLOW_CREATE_GROUP_OBJECTS 0x4000000
+#define PARCEL_FLAG_ALLOW_CREATE_OBJECTS 0x40
+#define PARCEL_FLAG_ALLOW_DAMAGE 0x20
+#define PARCEL_FLAG_ALLOW_FLY 0x1
+#define PARCEL_FLAG_ALLOW_GROUP_OBJECT_ENTRY 0x10000000
+#define PARCEL_FLAG_ALLOW_GROUP_SCRIPTS 0x2000000
+#define PARCEL_FLAG_ALLOW_LANDMARK 0x8
+#define PARCEL_FLAG_ALLOW_SCRIPTS 0x2
+#define PARCEL_FLAG_ALLOW_TERRAFORM 0x10
+#define PARCEL_FLAG_LOCAL_SOUND_ONLY 0x8000
+#define PARCEL_FLAG_RESTRICT_PUSHOBJECT 0x200000
+#define PARCEL_FLAG_USE_ACCESS_GROUP 0x100
+#define PARCEL_FLAG_USE_ACCESS_LIST 0x200
+#define PARCEL_FLAG_USE_BAN_LIST 0x400
+#define PARCEL_FLAG_USE_LAND_PASS_LIST 0x800
+#define PARCEL_MEDIA_COMMAND_AGENT 0x7
+#define PARCEL_MEDIA_COMMAND_AUTO_ALIGN 0x9
+/*Use this to get or set the parcel media description.*/
+#define PARCEL_MEDIA_COMMAND_DESC 0xC
+#define PARCEL_MEDIA_COMMAND_LOOP 0x3
+/*Used to get or set the parcel's media looping variable.*/
+#define PARCEL_MEDIA_COMMAND_LOOP_SET 0xD
+#define PARCEL_MEDIA_COMMAND_PAUSE 0x1
+#define PARCEL_MEDIA_COMMAND_PLAY 0x2
+/*Use this to get or set the parcel media pixel resolution.*/
+#define PARCEL_MEDIA_COMMAND_SIZE 0xB
+#define PARCEL_MEDIA_COMMAND_STOP 0x0
+#define PARCEL_MEDIA_COMMAND_TEXTURE 0x4
+#define PARCEL_MEDIA_COMMAND_TIME 0x6
+/*Use this to get or set the parcel media MIME type (e.g. "text/html").*/
+#define PARCEL_MEDIA_COMMAND_TYPE 0xA
+#define PARCEL_MEDIA_COMMAND_UNLOAD 0x8
+#define PARCEL_MEDIA_COMMAND_URL 0x5
+/*Static in-world objects.*/
+#define PASSIVE 0x4
+/*Always pass the event.*/
+#define PASS_ALWAYS 0x1
+/*Pass the event if there is no script handling the event in the prim.*/
+#define PASS_IF_NOT_HANDLED 0x0
+/*Always pass the event.*/
+#define PASS_NEVER 0x2
+#define PATROL_PAUSE_AT_WAYPOINTS 0x0
+#define PAYMENT_INFO_ON_FILE 0x1
+#define PAYMENT_INFO_USED 0x2
+#define PAY_DEFAULT 0xFFFFFFFE
+#define PAY_HIDE 0xFFFFFFFF
+/*If this permission is enabled, the object can successfully call llAttachToAvatar to attach to the given avatar.*/
+#define PERMISSION_ATTACH 0x20
+/*(not yet implemented)*/
+#define PERMISSION_CHANGE_JOINTS 0x100
+/*If this permission is enabled, the object can successfully call llCreateLink, llBreakLink, and llBreakAllLinks to change links to other objects.*/
+#define PERMISSION_CHANGE_LINKS 0x80
+/*(not yet implemented)*/
+#define PERMISSION_CHANGE_PERMISSIONS 0x200
+#define PERMISSION_CONTROL_CAMERA 0x800
+/*If this permission is enabled, the object can successfully call llGiveMoney or llTransferLindenDollars to debit the owners account.*/
+#define PERMISSION_DEBIT 0x2
+/*Permission to override default animations.*/
+#define PERMISSION_OVERRIDE_ANIMATIONS 0x8000
+/*(not yet implemented)*/
+#define PERMISSION_RELEASE_OWNERSHIP 0x40
+/*(not yet implemented)*/
+#define PERMISSION_REMAP_CONTROLS 0x8
+#define PERMISSION_RETURN_OBJECTS 0x10000
+/*A script with this permission does not notify the object owner when it modifies estate access rules via llManageEstateAccess.*/
+#define PERMISSION_SILENT_ESTATE_MANAGEMENT 0x4000
+/*If this permission enabled, the object can successfully call the llTakeControls libray call.*/
+#define PERMISSION_TAKE_CONTROLS 0x4
+#define PERMISSION_TELEPORT 0x1000
+#define PERMISSION_TRACK_CAMERA 0x400
+/*If this permission is enabled, the object can successfully call llStartAnimation for the avatar that owns this.*/
+#define PERMISSION_TRIGGER_ANIMATION 0x10
+#define PERM_ALL 0x7FFFFFFF
+#define PERM_COPY 0x8000
+#define PERM_MODIFY 0x4000
+#define PERM_MOVE 0x80000
+#define PERM_TRANSFER 0x2000
+/*3.14159265 - The number of radians in a semi-circle.*/
+#define PI 3.141592650000000208621032
+/*Play animation going forwards, then backwards.*/
+#define PING_PONG 0x8
+/*1.57079633 - The number of radians in a quarter circle.*/
+#define PI_BY_TWO 1.570796330000000073923161
+/*Prim parameter for restricting manual standing for seated avatars in an experience.\nIgnored if the avatar was not seated via a call to llSitOnLink.*/
+#define PRIM_ALLOW_UNSIT 0x27
+/*Prim parameter for materials using integer face, integer alpha_mode, integer alpha_cutoff.\nDefines how the alpha channel of the diffuse texture should be rendered.\nValid options for alpha_mode are PRIM_ALPHA_MODE_BLEND, _NONE, _MASK, and _EMISSIVE.\nalpha_cutoff is used only for PRIM_ALPHA_MODE_MASK.*/
+#define PRIM_ALPHA_MODE 0x26
+/*Prim parameter setting for PRIM_ALPHA_MODE.\nIndicates that the diffuse texture's alpha channel should be rendered as alpha-blended.*/
+#define PRIM_ALPHA_MODE_BLEND 0x1
+/*Prim parameter setting for PRIM_ALPHA_MODE.\nIndicates that the diffuse texture's alpha channel should be rendered as an emissivity mask.*/
+#define PRIM_ALPHA_MODE_EMISSIVE 0x3
+/*Prim parameter setting for PRIM_ALPHA_MODE.\nIndicates that the diffuse texture's alpha channel should be rendered as fully opaque for alpha values above alpha_cutoff and fully transparent otherwise.*/
+#define PRIM_ALPHA_MODE_MASK 0x2
+/*Prim parameter setting for PRIM_ALPHA_MODE.\nIndicates that the diffuse texture's alpha channel should be ignored.*/
+#define PRIM_ALPHA_MODE_NONE 0x0
+#define PRIM_BUMP_BARK 0x4
+#define PRIM_BUMP_BLOBS 0xC
+#define PRIM_BUMP_BRICKS 0x5
+#define PRIM_BUMP_BRIGHT 0x1
+#define PRIM_BUMP_CHECKER 0x6
+#define PRIM_BUMP_CONCRETE 0x7
+#define PRIM_BUMP_DARK 0x2
+#define PRIM_BUMP_DISKS 0xA
+#define PRIM_BUMP_GRAVEL 0xB
+#define PRIM_BUMP_LARGETILE 0xE
+#define PRIM_BUMP_NONE 0x0
+#define PRIM_BUMP_SHINY 0x13
+#define PRIM_BUMP_SIDING 0xD
+#define PRIM_BUMP_STONE 0x9
+#define PRIM_BUMP_STUCCO 0xF
+#define PRIM_BUMP_SUCTION 0x10
+#define PRIM_BUMP_TILE 0x8
+#define PRIM_BUMP_WEAVE 0x11
+#define PRIM_BUMP_WOOD 0x3
+#define PRIM_CAST_SHADOWS 0x18
+#define PRIM_COLOR 0x12
+#define PRIM_DESC 0x1C
+#define PRIM_FLEXIBLE 0x15
+#define PRIM_FULLBRIGHT 0x14
+/*PRIM_GLOW is used to get or set the glow status of the face.*/
+#define PRIM_GLOW 0x19
+#define PRIM_HOLE_CIRCLE 0x10
+#define PRIM_HOLE_DEFAULT 0x0
+#define PRIM_HOLE_SQUARE 0x20
+#define PRIM_HOLE_TRIANGLE 0x30
+#define PRIM_LINK_TARGET 0x22
+#define PRIM_MATERIAL 0x2
+#define PRIM_MATERIAL_FLESH 0x4
+#define PRIM_MATERIAL_GLASS 0x2
+#define PRIM_MATERIAL_LIGHT 0x7
+#define PRIM_MATERIAL_METAL 0x1
+#define PRIM_MATERIAL_PLASTIC 0x5
+#define PRIM_MATERIAL_RUBBER 0x6
+#define PRIM_MATERIAL_STONE 0x0
+#define PRIM_MATERIAL_WOOD 0x3
+/*Boolean. Gets/Sets the default image state (the image that the user sees before a piece of media is active) for the chosen face. The default image is specified by Second Life's server for that media type.*/
+#define PRIM_MEDIA_ALT_IMAGE_ENABLE 0x0
+/*Boolean. Gets/Sets whether auto-looping is enabled.*/
+#define PRIM_MEDIA_AUTO_LOOP 0x4
+/*Boolean. Gets/Sets whether the media auto-plays when a Resident can view it.*/
+#define PRIM_MEDIA_AUTO_PLAY 0x5
+/*Boolean. Gets/Sets whether auto-scaling is enabled. Auto-scaling forces the media to the full size of the texture.*/
+#define PRIM_MEDIA_AUTO_SCALE 0x6
+/*Boolean. Gets/Sets whether clicking the media triggers auto-zoom and auto-focus on the media.*/
+#define PRIM_MEDIA_AUTO_ZOOM 0x7
+/*Integer. Gets/Sets the style of controls. Can be either PRIM_MEDIA_CONTROLS_STANDARD or PRIM_MEDIA_CONTROLS_MINI.*/
+#define PRIM_MEDIA_CONTROLS 0x1
+/*Mini web navigation controls; does not include an address bar.*/
+#define PRIM_MEDIA_CONTROLS_MINI 0x1
+/*Standard web navigation controls.*/
+#define PRIM_MEDIA_CONTROLS_STANDARD 0x0
+/*String. Gets/Sets the current url displayed on the chosen face. Changing this URL causes navigation. 1024 characters Maximum.*/
+#define PRIM_MEDIA_CURRENT_URL 0x2
+/*Boolean. Gets/Sets whether the first click interaction is enabled.*/
+#define PRIM_MEDIA_FIRST_CLICK_INTERACT 0x8
+/*Integer. Gets/Sets the height of the media in pixels.*/
+#define PRIM_MEDIA_HEIGHT_PIXELS 0xA
+/*String. Gets/Sets the home URL for the chosen face. 1024 characters maximum.*/
+#define PRIM_MEDIA_HOME_URL 0x3
+#define PRIM_MEDIA_MAX_HEIGHT_PIXELS 0x800
+#define PRIM_MEDIA_MAX_URL_LENGTH 0x400
+#define PRIM_MEDIA_MAX_WHITELIST_COUNT 0x40
+#define PRIM_MEDIA_MAX_WHITELIST_SIZE 0x400
+#define PRIM_MEDIA_MAX_WIDTH_PIXELS 0x800
+#define PRIM_MEDIA_PARAM_MAX 0xE
+/*Integer. Gets/Sets the permissions mask that control who can see the media control bar above the object:: PRIM_MEDIA_PERM_ANYONE, PRIM_MEDIA_PERM_GROUP, PRIM_MEDIA_PERM_NONE, PRIM_MEDIA_PERM_OWNER*/
+#define PRIM_MEDIA_PERMS_CONTROL 0xE
+/*Integer. Gets/Sets the permissions mask that control who can interact with the object: PRIM_MEDIA_PERM_ANYONE, PRIM_MEDIA_PERM_GROUP, PRIM_MEDIA_PERM_NONE, PRIM_MEDIA_PERM_OWNER*/
+#define PRIM_MEDIA_PERMS_INTERACT 0xD
+#define PRIM_MEDIA_PERM_ANYONE 0x4
+#define PRIM_MEDIA_PERM_GROUP 0x2
+#define PRIM_MEDIA_PERM_NONE 0x0
+#define PRIM_MEDIA_PERM_OWNER 0x1
+/*String. Gets/Sets the white-list as a string of escaped, comma-separated URLs. This string can hold up to 64 URLs or 1024 characters, whichever comes first.*/
+#define PRIM_MEDIA_WHITELIST 0xC
+/*Boolean. Gets/Sets whether navigation is restricted to URLs in PRIM_MEDIA_WHITELIST.*/
+#define PRIM_MEDIA_WHITELIST_ENABLE 0xB
+/*Integer. Gets/Sets the width of the media in pixels.*/
+#define PRIM_MEDIA_WIDTH_PIXELS 0x9
+#define PRIM_NAME 0x1B
+/*Prim parameter for materials using integer face, string texture, vector repeats, vector offsets, float rotation_in_radians*/
+#define PRIM_NORMAL 0x25
+#define PRIM_OMEGA 0x20
+#define PRIM_PHANTOM 0x5
+#define PRIM_PHYSICS 0x3
+/*Use the convex hull of the prim shape for physics (this is the default for mesh objects).*/
+#define PRIM_PHYSICS_SHAPE_CONVEX 0x2
+/*Ignore this prim in the physics shape. NB: This cannot be applied to the root prim.*/
+#define PRIM_PHYSICS_SHAPE_NONE 0x1
+/*Use the normal prim shape for physics (this is the default for all non-mesh objects).*/
+#define PRIM_PHYSICS_SHAPE_PRIM 0x0
+/*Allows you to set the physics shape type of a prim via lsl. Permitted values are:
+			PRIM_PHYSICS_SHAPE_NONE, PRIM_PHYSICS_SHAPE_PRIM, PRIM_PHYSICS_SHAPE_CONVEX*/
+#define PRIM_PHYSICS_SHAPE_TYPE 0x1E
+#define PRIM_POINT_LIGHT 0x17
+#define PRIM_POSITION 0x6
+#define PRIM_POS_LOCAL 0x21
+#define PRIM_PROJECTOR 0x2A
+#define PRIM_ROTATION 0x8
+#define PRIM_ROT_LOCAL 0x1D
+/*Prim parameter for restricting manual sitting on this prim.\nSitting must be initiated via call to llSitOnLink.*/
+#define PRIM_SCRIPTED_SIT_ONLY 0x28
+/*Render inside out (inverts the normals).*/
+#define PRIM_SCULPT_FLAG_INVERT 0x40
+/*Render an X axis mirror of the sculpty.*/
+#define PRIM_SCULPT_FLAG_MIRROR 0x80
+#define PRIM_SCULPT_TYPE_CYLINDER 0x4
+#define PRIM_SCULPT_TYPE_MASK 0x7
+#define PRIM_SCULPT_TYPE_PLANE 0x3
+#define PRIM_SCULPT_TYPE_SPHERE 0x1
+#define PRIM_SCULPT_TYPE_TORUS 0x2
+#define PRIM_SHINY_HIGH 0x3
+#define PRIM_SHINY_LOW 0x1
+#define PRIM_SHINY_MEDIUM 0x2
+#define PRIM_SHINY_NONE 0x0
+#define PRIM_SIT_TARGET 0x29
+#define PRIM_SIZE 0x7
+#define PRIM_SLICE 0x23
+/*Prim parameter for materials using integer face, string texture, vector repeats, vector offsets, float rotation_in_radians, vector color, integer glossy, integer environment*/
+#define PRIM_SPECULAR 0x24
+#define PRIM_TEMP_ON_REZ 0x4
+#define PRIM_TEXGEN 0x16
+#define PRIM_TEXGEN_DEFAULT 0x0
+#define PRIM_TEXGEN_PLANAR 0x1
+#define PRIM_TEXT 0x1A
+#define PRIM_TEXTURE 0x11
+#define PRIM_TYPE 0x9
+#define PRIM_TYPE_BOX 0x0
+#define PRIM_TYPE_CYLINDER 0x1
+#define PRIM_TYPE_PRISM 0x2
+#define PRIM_TYPE_RING 0x6
+#define PRIM_TYPE_SCULPT 0x7
+#define PRIM_TYPE_SPHERE 0x3
+#define PRIM_TYPE_TORUS 0x4
+#define PRIM_TYPE_TUBE 0x5
+/*Disables profiling*/
+#define PROFILE_NONE 0x0
+/*Enables memory profiling*/
+#define PROFILE_SCRIPT_MEMORY 0x1
+#define PSYS_PART_BF_DEST_COLOR 0x2
+#define PSYS_PART_BF_ONE 0x0
+#define PSYS_PART_BF_ONE_MINUS_DEST_COLOR 0x4
+#define PSYS_PART_BF_ONE_MINUS_SOURCE_ALPHA 0x9
+#define PSYS_PART_BF_ONE_MINUS_SOURCE_COLOR 0x5
+#define PSYS_PART_BF_SOURCE_ALPHA 0x7
+#define PSYS_PART_BF_SOURCE_COLOR 0x3
+#define PSYS_PART_BF_ZERO 0x1
+#define PSYS_PART_BLEND_FUNC_DEST 0x19
+#define PSYS_PART_BLEND_FUNC_SOURCE 0x18
+/*Particles bounce off of a plane at the objects Z height.*/
+#define PSYS_PART_BOUNCE_MASK 0x4
+/*The particle glows.*/
+#define PSYS_PART_EMISSIVE_MASK 0x100
+/*A float which determines the ending alpha of the object.*/
+#define PSYS_PART_END_ALPHA 0x4
+/*A vector <r, g, b> which determines the ending color of the object.*/
+#define PSYS_PART_END_COLOR 0x3
+#define PSYS_PART_END_GLOW 0x1B
+/*A vector <sx, sy, z>, which is the ending size of the particle billboard in meters (z is ignored).*/
+#define PSYS_PART_END_SCALE 0x6
+/*Each particle that is emitted by the particle system is simulated based on the following flags. To use multiple flags, bitwise or (|) them together.*/
+#define PSYS_PART_FLAGS 0x0
+/*The particle position is relative to the source objects position.*/
+#define PSYS_PART_FOLLOW_SRC_MASK 0x10
+/*The particle orientation is rotated so the vertical axis faces towards the particle velocity.*/
+#define PSYS_PART_FOLLOW_VELOCITY_MASK 0x20
+/*Interpolate both the color and alpha from the start value to the end value.*/
+#define PSYS_PART_INTERP_COLOR_MASK 0x1
+/*Interpolate the particle scale from the start value to the end value.*/
+#define PSYS_PART_INTERP_SCALE_MASK 0x2
+/*Age in seconds of a particle at which it dies.*/
+#define PSYS_PART_MAX_AGE 0x7
+#define PSYS_PART_RIBBON_MASK 0x400
+/*A float which determines the starting alpha of the object.*/
+#define PSYS_PART_START_ALPHA 0x2
+/*A vector <r.r, g.g, b.b> which determines the starting color of the object.*/
+#define PSYS_PART_START_COLOR 0x1
+#define PSYS_PART_START_GLOW 0x1A
+/*A vector <sx, sy, z>, which is the starting size of the particle billboard in meters (z is ignored).*/
+#define PSYS_PART_START_SCALE 0x5
+#define PSYS_PART_TARGET_LINEAR_MASK 0x80
+/*The particle heads towards the location of the target object as defined by PSYS_SRC_TARGET_KEY.*/
+#define PSYS_PART_TARGET_POS_MASK 0x40
+/*Particles have their velocity damped towards the wind velocity.*/
+#define PSYS_PART_WIND_MASK 0x8
+/*A vector <x, y, z> which is the acceleration to apply on particles.*/
+#define PSYS_SRC_ACCEL 0x8
+/*Area in radians specifying where particles will NOT be created (for ANGLE patterns)*/
+#define PSYS_SRC_ANGLE_BEGIN 0x16
+/*Area in radians filled with particles (for ANGLE patterns) (if lower than PSYS_SRC_ANGLE_BEGIN, acts as PSYS_SRC_ANGLE_BEGIN itself, and PSYS_SRC_ANGLE_BEGIN acts as PSYS_SRC_ANGLE_END).*/
+#define PSYS_SRC_ANGLE_END 0x17
+/*How many particles to release in a burst.*/
+#define PSYS_SRC_BURST_PART_COUNT 0xF
+/*What distance from the center of the object to create the particles.*/
+#define PSYS_SRC_BURST_RADIUS 0x10
+/*How often to release a particle burst (float seconds).*/
+#define PSYS_SRC_BURST_RATE 0xD
+/*Maximum speed that a particle should be moving.*/
+#define PSYS_SRC_BURST_SPEED_MAX 0x12
+/*Minimum speed that a particle should be moving.*/
+#define PSYS_SRC_BURST_SPEED_MIN 0x11
+/*Specifies the inner angle of the arc created by the PSYS_SRC_PATTERN_ANGLE or PSYS_SRC_PATTERN_ANGLE_CONE source pattern.
+			The area specified will NOT have particles in it.*/
+#define PSYS_SRC_INNERANGLE 0xA
+/*How long this particle system should last, 0.0 means forever.*/
+#define PSYS_SRC_MAX_AGE 0x13
+/*Sets the angular velocity to rotate the axis that SRC_PATTERN_ANGLE and SRC_PATTERN_ANGLE_CONE use.*/
+#define PSYS_SRC_OMEGA 0x15
+/*Specifies the outer angle of the arc created by the PSYS_SRC_PATTERN_ANGLE or PSYS_SRC_PATTERN_ANGLE_CONE source pattern.
+			The area between the outer and inner angle will be filled with particles.*/
+#define PSYS_SRC_OUTERANGLE 0xB
+/*The pattern which is used to generate particles.
+			Use one of the following values: PSYS_SRC_PATTERN Values.*/
+#define PSYS_SRC_PATTERN 0x9
+/*Shoot particles across a 2 dimensional area defined by the arc created from PSYS_SRC_OUTERANGLE. There will be an open area defined by PSYS_SRC_INNERANGLE within the larger arc.*/
+#define PSYS_SRC_PATTERN_ANGLE 0x4
+/*Shoot particles out in a 3 dimensional cone with an outer arc of PSYS_SRC_OUTERANGLE and an inner open area defined by PSYS_SRC_INNERANGLE.*/
+#define PSYS_SRC_PATTERN_ANGLE_CONE 0x8
+#define PSYS_SRC_PATTERN_ANGLE_CONE_EMPTY 0x10
+/*Drop particles at the source position.*/
+#define PSYS_SRC_PATTERN_DROP 0x1
+/*Shoot particles out in all directions, using the burst parameters.*/
+#define PSYS_SRC_PATTERN_EXPLODE 0x2
+/*The key of a target object to move towards if PSYS_PART_TARGET_POS_MASK is enabled.*/
+#define PSYS_SRC_TARGET_KEY 0x14
+/*An asset name for the texture to use for the particles.*/
+#define PSYS_SRC_TEXTURE 0xC
+/*PUBLIC_CHANNEL is an integer constant that, when passed to llSay, llWhisper, or llShout as a channel parameter, will print text to the publicly heard chat channel.*/
+#define PUBLIC_CHANNEL 0x0
+/*Selects a random destination near the offset.*/
+#define PURSUIT_FUZZ_FACTOR 0x3
+#define PURSUIT_GOAL_TOLERANCE 0x5
+/*Define whether the character attempts to predict the target's location.*/
+#define PURSUIT_INTERCEPT 0x4
+/*Go to a position offset from the target.*/
+#define PURSUIT_OFFSET 0x1
+/*Triggered when an llEvade character thinks it has hidden from its pursuer.*/
+#define PU_EVADE_HIDDEN 0x7
+/*Triggered when an llEvade character switches from hiding to running*/
+#define PU_EVADE_SPOTTED 0x8
+#define PU_FAILURE_DYNAMIC_PATHFINDING_DISABLED 0xA
+/*Goal is not on the navigation-mesh and cannot be reached.*/
+#define PU_FAILURE_INVALID_GOAL 0x3
+/*Character cannot navigate from the current location - e.g., the character is off the navmesh or too high above it.*/
+#define PU_FAILURE_INVALID_START 0x2
+/*This is a fatal error reported to a character when there is no navmesh for the region. This usually indicates a server failure and users should file a bug report and include the time and region in which they received this message.*/
+#define PU_FAILURE_NO_NAVMESH 0x9
+/*There is no good place for the character to go - e.g., it is patrolling and all the patrol points are now unreachable.*/
+#define PU_FAILURE_NO_VALID_DESTINATION 0x6
+#define PU_FAILURE_OTHER 0xF4240
+#define PU_FAILURE_PARCEL_UNREACHABLE 0xB
+/*Target (for llPursue or llEvade) can no longer be tracked - e.g., it left the region or is an avatar that is now more than about 30m outside the region.*/
+#define PU_FAILURE_TARGET_GONE 0x5
+/*Goal is no longer reachable for some reason - e.g., an obstacle blocks the path.*/
+#define PU_FAILURE_UNREACHABLE 0x4
+/*Character has reached the goal and will stop or choose a new goal (if wandering).*/
+#define PU_GOAL_REACHED 0x1
+/*Character is near current goal.*/
+#define PU_SLOWDOWN_DISTANCE_REACHED 0x0
+/*57.2957795 - Number of degrees per radian. You can use this number to convert radians to degrees by multiplying the radians by this number.*/
+#define RAD_TO_DEG 57.29577950000000186037141
+#define RCERR_CAST_TIME_EXCEEDED 0xFFFFFFFD
+#define RCERR_SIM_PERF_LOW 0xFFFFFFFE
+#define RCERR_UNKNOWN 0xFFFFFFFF
+#define RC_DATA_FLAGS 0x2
+#define RC_DETECT_PHANTOM 0x1
+#define RC_GET_LINK_NUM 0x4
+#define RC_GET_NORMAL 0x1
+#define RC_GET_ROOT_KEY 0x2
+#define RC_MAX_HITS 0x3
+#define RC_REJECT_AGENTS 0x1
+#define RC_REJECT_LAND 0x8
+#define RC_REJECT_NONPHYSICAL 0x4
+#define RC_REJECT_PHYSICAL 0x2
+#define RC_REJECT_TYPES 0x0
+#define REGION_FLAG_ALLOW_DAMAGE 0x1
+#define REGION_FLAG_ALLOW_DIRECT_TELEPORT 0x100000
+#define REGION_FLAG_BLOCK_FLY 0x80000
+#define REGION_FLAG_BLOCK_FLYOVER 0x8000000
+#define REGION_FLAG_BLOCK_TERRAFORM 0x40
+#define REGION_FLAG_DISABLE_COLLISIONS 0x1000
+#define REGION_FLAG_DISABLE_PHYSICS 0x4000
+#define REGION_FLAG_FIXED_SUN 0x10
+#define REGION_FLAG_RESTRICT_PUSHOBJECT 0x400000
+#define REGION_FLAG_SANDBOX 0x100
+#define REMOTE_DATA_CHANNEL 0x1
+#define REMOTE_DATA_REPLY 0x3
+#define REMOTE_DATA_REQUEST 0x2
+/*Define whether the character needs a line-of-sight to give chase.*/
+#define REQUIRE_LINE_OF_SIGHT 0x2
+/*Used with llSetPhysicsMaterial to enable the density value. Must be between 0.0 and 1.0*/
+#define RESTITUTION 0x4
+/*Play animation in reverse direction.*/
+#define REVERSE 0x4
+/*Animate texture rotation.*/
+#define ROTATE 0x20
+/*Animate the texture scale.*/
+#define SCALE 0x40
+/*Scripted in-world objects.*/
+#define SCRIPTED 0x8
+/*Returns the % of pathfinding characters skipped each frame, averaged over the last minute.\nThe returned value corresponds to the "Characters Updated" stat in the viewer's Statistics Bar.*/
+#define SIM_STAT_PCT_CHARS_STEPPED 0x0
+/*Avatar ID did not specify a valid avatar.*/
+#define SIT_INVALID_AGENT 0xFFFFFFFC
+/*Link ID did not specify a valid prim in the linkset or resolved to multiple prims.*/
+#define SIT_INVALID_LINK 0xFFFFFFFB
+/*Attempt to force an avatar to sit on an attachment or other invalid target.*/
+#define SIT_INVALID_OBJECT 0xFFFFFFF9
+/*Attempt to force an avatar to sit outside an experience.*/
+#define SIT_NOT_EXPERIENCE 0xFFFFFFFF
+/*Avatar does not have access to the parcel containing the target linkset of the forced sit.*/
+#define SIT_NO_ACCESS 0xFFFFFFFA
+/*Avatar has not granted permission to force sits.*/
+#define SIT_NO_EXPERIENCE_PERMISSION 0xFFFFFFFE
+/*No available sit target in linkset for forced sit.*/
+#define SIT_NO_SIT_TARGET 0xFFFFFFFD
+/*The ambient color of the environment*/
+#define SKY_AMBIENT 0x0
+/*Blue settings for environment*/
+#define SKY_BLUE 0x16
+/*Settings controlling cloud density and configuration*/
+#define SKY_CLOUDS 0x2
+/*Texture ID used by clouds*/
+#define SKY_CLOUD_TEXTURE 0x13
+/*Sky dome information.*/
+#define SKY_DOME 0x4
+/*The gamma value applied to the scene.*/
+#define SKY_GAMMA 0x5
+/*Glow color applied to the sun and moon.*/
+#define SKY_GLOW 0x6
+/*Haze settings for environment*/
+#define SKY_HAZE 0x17
+/*Miscellaneous lighting values.*/
+#define SKY_LIGHT 0x8
+/*Environmental moon details.*/
+#define SKY_MOON 0x9
+/*Environmental moon texture.*/
+#define SKY_MOON_TEXTURE 0x14
+/*Planet information used in rendering the sky.*/
+#define SKY_PLANET 0xA
+/*Sky refraction parameters for rainbows and optical effects.*/
+#define SKY_REFRACTION 0xB
+/*Brightness value for the stars.*/
+#define SKY_STAR_BRIGHTNESS 0xD
+/*Detailed sun information*/
+#define SKY_SUN 0xE
+/*Environmental sun texture*/
+#define SKY_SUN_TEXTURE 0x15
+/*Is the environment using the default textures.*/
+#define SKY_TEXTURE_DEFAULTS 0x1
+/*Track elevations for this region.*/
+#define SKY_TRACKS 0xF
+/*Slide in the X direction, instead of playing separate frames.*/
+#define SMOOTH 0x10
+/*1.41421356 - The square root of 2.*/
+#define SQRT2 1.414213560000000091676498
+/*Controls whether the object can be grabbed.\nA grab is the default action when in third person, and is available as the hand tool in build mode. This is useful for physical objects that you don't want other people to be able to trivially disturb. The default is FALSE*/
+#define STATUS_BLOCK_GRAB 0x40
+/*Prevent click-and-drag movement on all prims in the object.*/
+#define STATUS_BLOCK_GRAB_OBJECT 0x400
+/*Argument(s) passed to function had a bounds error.*/
+#define STATUS_BOUNDS_ERROR 0x3EA
+#define STATUS_CAST_SHADOWS 0x200
+/*Controls whether the object is returned to the owners inventory if it wanders off the edge of the world.\nIt is useful to set this status TRUE for things like bullets or rockets. The default is TRUE*/
+#define STATUS_DIE_AT_EDGE 0x80
+/*Controls whether the object dies if it attempts to enter a parcel that does not allow object entry or does not have enough capacity.\nIt is useful to set this status TRUE for things like bullets or rockets. The default is FALSE*/
+#define STATUS_DIE_AT_NO_ENTRY 0x800
+/*An internal error occurred.*/
+#define STATUS_INTERNAL_ERROR 0x7CF
+/*Function was called with malformed parameters.*/
+#define STATUS_MALFORMED_PARAMS 0x3E8
+/*Object or other item was not found.*/
+#define STATUS_NOT_FOUND 0x3EB
+/*Feature not supported.*/
+#define STATUS_NOT_SUPPORTED 0x3EC
+/*Result of function call was a success.*/
+#define STATUS_OK 0x0
+/*Controls/indicates whether the object collides or not.\nSetting the value to TRUE makes the object non-colliding with all objects. It is a good idea to use this for most objects that move or rotate, but are non-physical. It is also useful for simulating volumetric lighting. The default is FALSE.*/
+#define STATUS_PHANTOM 0x10
+/*Controls/indicates whether the object moves physically.\nThis controls the same flag that the UI check-box for Physical controls. The default is FALSE.*/
+#define STATUS_PHYSICS 0x1
+#define STATUS_RETURN_AT_EDGE 0x100
+#define STATUS_ROTATE_X 0x2
+#define STATUS_ROTATE_Y 0x4
+/*Controls/indicates whether the object can physically rotate around
+			the specific axis or not. This flag has no meaning
+			for non-physical objects. Set the value to FALSE
+			if you want to disable rotation around that axis. The
+			default is TRUE for a physical object.
+			A useful example to think about when visualizing
+			the effect is a sit-and-spin device. They spin around the
+			Z axis (up) but not around the X or Y axis.*/
+#define STATUS_ROTATE_Z 0x8
+/*Controls/indicates whether the object can cross region boundaries
+			and move more than 20 meters from its creation
+			point. The default if FALSE.*/
+#define STATUS_SANDBOX 0x20
+/*Argument(s) passed to function had a type mismatch.*/
+#define STATUS_TYPE_MISMATCH 0x3E9
+/*Whitelist Failed.*/
+#define STATUS_WHITELIST_FAILED 0x7D1
+#define STRING_TRIM 0x3
+#define STRING_TRIM_HEAD 0x1
+#define STRING_TRIM_TAIL 0x2
+/*Send email to the owner of the object*/
+#define TARGETED_EMAIL_OBJECT_OWNER 0x2
+/*Send email to the creator of the root object*/
+#define TARGETED_EMAIL_ROOT_CREATOR 0x1
+#define TEXTURE_BLANK "5748decc-f629-461c-9a36-a35a221fe21f"
+#define TEXTURE_DEFAULT "89556747-24cb-43ed-920b-47caed15465f"
+#define TEXTURE_MEDIA "8b5fec65-8d8d-9dc5-cda8-8fdf2716e361"
+#define TEXTURE_PLYWOOD "89556747-24cb-43ed-920b-47caed15465f"
+#define TEXTURE_TRANSPARENT "8dcd4a48-2d37-4909-9f78-f7a9eb4ef903"
+#define TOUCH_INVALID_FACE 0xFFFFFFFF
+#define TOUCH_INVALID_TEXCOORD <-1.0, -1.0, 0.0>
+#define TOUCH_INVALID_VECTOR <0.0, 0.0, 0.0>
+/*Direct teleporting is blocked on this parcel.*/
+#define TP_ROUTING_BLOCKED 0x0
+/*Teleports are unrestricted on this parcel.*/
+#define TP_ROUTING_FREE 0x2
+/*Teleports are routed to a landing point if set on this parcel.*/
+#define TP_ROUTING_LANDINGP 0x1
+/*One of TRAVERSAL_TYPE_FAST, TRAVERSAL_TYPE_SLOW, and TRAVERSAL_TYPE_NONE.*/
+#define TRAVERSAL_TYPE 0x7
+#define TRAVERSAL_TYPE_FAST 0x1
+#define TRAVERSAL_TYPE_NONE 0x2
+#define TRAVERSAL_TYPE_SLOW 0x0
+/*An integer constant for boolean comparisons. Has the value '1'.*/
+#define TRUE 0x1
+/*6.28318530 - The radians of a circle.*/
+#define TWO_PI 6.283185300000000417242063
+/*The list entry is a float.*/
+#define TYPE_FLOAT 0x2
+/*The list entry is an integer.*/
+#define TYPE_INTEGER 0x1
+/*The list entry is invalid.*/
+#define TYPE_INVALID 0x0
+/*The list entry is a key.*/
+#define TYPE_KEY 0x4
+/*The list entry is a rotation.*/
+#define TYPE_ROTATION 0x6
+/*The list entry is a string.*/
+#define TYPE_STRING 0x3
+/*The list entry is a vector.*/
+#define TYPE_VECTOR 0x5
+#define URL_REQUEST_DENIED "URL_REQUEST_DENIED"
+#define URL_REQUEST_GRANTED "URL_REQUEST_GRANTED"
+/*A slider between minimum (0.0) and maximum (1.0) deflection of angular orientation. That is, its a simple scalar for modulating the strength of angular deflection such that the vehicles preferred axis of motion points toward its real velocity.*/
+#define VEHICLE_ANGULAR_DEFLECTION_EFFICIENCY 0x20
+/*The time-scale for exponential success of linear deflection deflection. Its another way to specify the strength of the vehicles tendency to reorient itself so that its preferred axis of motion agrees with its true velocity.*/
+#define VEHICLE_ANGULAR_DEFLECTION_TIMESCALE 0x21
+/*A vector of timescales for exponential decay of the vehicles angular velocity about its preferred axes of motion (at, left, up).
+			Range = [0.07, inf) seconds for each element of the vector.*/
+#define VEHICLE_ANGULAR_FRICTION_TIMESCALE 0x11
+/*The timescale for exponential decay of the angular motors magnitude.*/
+#define VEHICLE_ANGULAR_MOTOR_DECAY_TIMESCALE 0x23
+/*The direction and magnitude (in preferred frame) of the vehicles angular motor.The vehicle will accelerate (or decelerate if necessary) to match its velocity to its motor.*/
+#define VEHICLE_ANGULAR_MOTOR_DIRECTION 0x13
+/*The timescale for exponential approach to full angular motor velocity.*/
+#define VEHICLE_ANGULAR_MOTOR_TIMESCALE 0x22
+/*A slider between anti (-1.0), none (0.0), and maxmum (1.0) banking strength.*/
+#define VEHICLE_BANKING_EFFICIENCY 0x26
+/*A slider between static (0.0) and dynamic (1.0) banking. "Static" means the banking scales only with the angle of roll, whereas "dynamic" is a term that also scales with the vehicles linear speed.*/
+#define VEHICLE_BANKING_MIX 0x27
+/*The timescale for banking to exponentially approach its maximum effect. This is another way to scale the strength of the banking effect, however it affects the term that is proportional to the difference between what the banking behavior is trying to do, and what the vehicle is actually doing.*/
+#define VEHICLE_BANKING_TIMESCALE 0x28
+/*A slider between minimum (0.0) and maximum anti-gravity (1.0).*/
+#define VEHICLE_BUOYANCY 0x1B
+#define VEHICLE_FLAG_CAMERA_DECOUPLED 0x200
+/*Hover at global height.*/
+#define VEHICLE_FLAG_HOVER_GLOBAL_HEIGHT 0x10
+/*Ignore water height when hovering.*/
+#define VEHICLE_FLAG_HOVER_TERRAIN_ONLY 0x8
+/*Hover does not push down. Use this flag for hovering vehicles that should be able to jump above their hover height.*/
+#define VEHICLE_FLAG_HOVER_UP_ONLY 0x20
+/*Ignore terrain height when hovering.*/
+#define VEHICLE_FLAG_HOVER_WATER_ONLY 0x4
+/*Prevents ground vehicles from motoring into the sky.*/
+#define VEHICLE_FLAG_LIMIT_MOTOR_UP 0x40
+/*For vehicles with vertical attractor that want to be able to climb/dive, for instance, aeroplanes that want to use the banking feature.*/
+#define VEHICLE_FLAG_LIMIT_ROLL_ONLY 0x2
+#define VEHICLE_FLAG_MOUSELOOK_BANK 0x100
+#define VEHICLE_FLAG_MOUSELOOK_STEER 0x80
+/*This flag prevents linear deflection parallel to world z-axis. This is useful for preventing ground vehicles with large linear deflection, like bumper cars, from climbing their linear deflection into the sky.*/
+#define VEHICLE_FLAG_NO_DEFLECTION_UP 0x1
+/*Old, changed to VEHICLE_FLAG_NO_DEFLECTION_UP*/
+#define VEHICLE_FLAG_NO_FLY_UP 0x1
+/*A slider between minimum (0.0 = bouncy) and maximum (1.0 = fast as possible) damped motion of the hover behavior. */
+#define VEHICLE_HOVER_EFFICIENCY 0x19
+/*The height (above the terrain or water, or global) at which the vehicle will try to hover.*/
+#define VEHICLE_HOVER_HEIGHT 0x18
+/*Period of time (in seconds) for the vehicle to achieve its hover height.*/
+#define VEHICLE_HOVER_TIMESCALE 0x1A
+/*A slider between minimum (0.0) and maximum (1.0) deflection of linear velocity. That is, its a simple scalar for modulating the strength of linear deflection.*/
+#define VEHICLE_LINEAR_DEFLECTION_EFFICIENCY 0x1C
+/*The timescale for exponential success of linear deflection deflection. It is another way to specify how much time it takes for the vehicles linear velocity to be redirected to its preferred axis of motion.*/
+#define VEHICLE_LINEAR_DEFLECTION_TIMESCALE 0x1D
+/*A vector of timescales for exponential decay of the vehicles linear velocity along its preferred axes of motion (at, left, up).
+			Range = [0.07, inf) seconds for each element of the vector.*/
+#define VEHICLE_LINEAR_FRICTION_TIMESCALE 0x10
+/*The timescale for exponential decay of the linear motors magnitude.*/
+#define VEHICLE_LINEAR_MOTOR_DECAY_TIMESCALE 0x1F
+/*The direction and magnitude (in preferred frame) of the vehicles linear motor. The vehicle will accelerate (or decelerate if necessary) to match its velocity to its motor.
+			Range of magnitude = [0, 30] meters/second.*/
+#define VEHICLE_LINEAR_MOTOR_DIRECTION 0x12
+#define VEHICLE_LINEAR_MOTOR_OFFSET 0x14
+/*The timescale for exponential approach to full linear motor velocity.*/
+#define VEHICLE_LINEAR_MOTOR_TIMESCALE 0x1E
+/*A rotation of the vehicles preferred axes of motion and orientation (at, left, up) with respect to the vehicles local frame (x, y, z).*/
+#define VEHICLE_REFERENCE_FRAME 0x2C
+/*Uses linear deflection for lift, no hover, and banking to turn.\nSee http://wiki.secondlife.com/wiki/VEHICLE_TYPE_AIRPLANE*/
+#define VEHICLE_TYPE_AIRPLANE 0x4
+/*Hover, and friction, but no deflection.\nSee http://wiki.secondlife.com/wiki/VEHICLE_TYPE_BALLOON*/
+#define VEHICLE_TYPE_BALLOON 0x5
+/*Hovers over water with lots of friction and some anglar deflection.\nSee http://wiki.secondlife.com/wiki/VEHICLE_TYPE_BOAT*/
+#define VEHICLE_TYPE_BOAT 0x3
+/*Another vehicle that bounces along the ground but needs the motors to be driven from external controls or timer events.\nSee http://wiki.secondlife.com/wiki/VEHICLE_TYPE_CAR*/
+#define VEHICLE_TYPE_CAR 0x2
+#define VEHICLE_TYPE_NONE 0x0
+/*Simple vehicle that bumps along the ground, and likes to move along its local x-axis.\nSee http://wiki.secondlife.com/wiki/VEHICLE_TYPE_SLED*/
+#define VEHICLE_TYPE_SLED 0x1
+/*A slider between minimum (0.0 = wobbly) and maximum (1.0 = firm as possible) stability of the vehicle to keep itself upright.*/
+#define VEHICLE_VERTICAL_ATTRACTION_EFFICIENCY 0x24
+/*The period of wobble, or timescale for exponential approach, of the vehicle to rotate such that its preferred "up" axis is oriented along the worlds "up" axis.*/
+#define VEHICLE_VERTICAL_ATTRACTION_TIMESCALE 0x25
+#define VERTICAL 0x0
+#define WANDER_PAUSE_AT_WAYPOINTS 0x0
+/*Blur factor.*/
+#define WATER_BLUR_MULTIPLIER 0x64
+/*Fog properties when underwater.*/
+#define WATER_FOG 0x65
+/*Fresnel scattering applied to the surface of the water.*/
+#define WATER_FRESNEL 0x66
+/*Scaling applied to the water normal map.*/
+#define WATER_NORMAL_SCALE 0x68
+/*Normal map used for environmental waves.*/
+#define WATER_NORMAL_TEXTURE 0x6B
+/*Refraction factors when looking through the surface of the water.*/
+#define WATER_REFRACTION 0x69
+/*Is the environment using the default wave map.*/
+#define WATER_TEXTURE_DEFAULTS 0x67
+/*Vectors for the directions of the waves.*/
+#define WATER_WAVE_DIRECTION 0x6A
+/*The region currently has experiences disabled.*/
+#define XP_ERROR_EXPERIENCES_DISABLED 0x2
+/*The experience owner has temporarily disabled the experience.*/
+#define XP_ERROR_EXPERIENCE_DISABLED 0x8
+/*The experience has been suspended by Linden Customer Support.*/
+#define XP_ERROR_EXPERIENCE_SUSPENDED 0x9
+/*The script is associated with an experience that no longer exists.*/
+#define XP_ERROR_INVALID_EXPERIENCE 0x7
+/*One of the string arguments was too big to fit in the key-value store.*/
+#define XP_ERROR_INVALID_PARAMETERS 0x3
+/*The requested key does not exist.*/
+#define XP_ERROR_KEY_NOT_FOUND 0xE
+/*The content rating of the experience exceeds that of the region.*/
+#define XP_ERROR_MATURITY_EXCEEDED 0x10
+/*No error was detected.*/
+#define XP_ERROR_NONE 0x0
+/*The sim was unable to verify the validity of the experience. Retrying after a short wait is advised.*/
+#define XP_ERROR_NOT_FOUND 0x6
+/*This experience is not allowed to run by the requested agent.*/
+#define XP_ERROR_NOT_PERMITTED 0x4
+/*This experience is not allowed to run on the current region.*/
+#define XP_ERROR_NOT_PERMITTED_LAND 0x11
+/*This script is not associated with an experience.*/
+#define XP_ERROR_NO_EXPERIENCE 0x5
+/*An attempted write data to the key-value store failed due to the data quota being met.*/
+#define XP_ERROR_QUOTA_EXCEEDED 0xB
+/*Request timed out; permissions not modified.*/
+#define XP_ERROR_REQUEST_PERM_TIMEOUT 0x12
+/*A checked update failed due to an out of date request.*/
+#define XP_ERROR_RETRY_UPDATE 0xF
+/*Unable to communicate with the key-value store.*/
+#define XP_ERROR_STORAGE_EXCEPTION 0xD
+/*The key-value store is currently disabled on this region.*/
+#define XP_ERROR_STORE_DISABLED 0xC
+/*The call failed due to too many recent calls.*/
+#define XP_ERROR_THROTTLED 0x1
+/*Other unknown error.*/
+#define XP_ERROR_UNKNOWN_ERROR 0xA
+#define ZERO_ROTATION <0.0, 0.0, 0.0, 1.0>
+#define ZERO_VECTOR <0.0, 0.0, 0.0>
