@@ -41,32 +41,28 @@
     <!-- test -->
     <script type="module" src="./test.js"></script>
 
-    <section>
-        <!-- global -->
+    <section> <!-- global -->
         <script type="module" src="./global_test.js"></script>
         <script type="module" src="./error_test.js"></script>
         <script type="module" src="./array_test.js"></script>
         <script type="module" src="./html_test.js"></script>
     </section>
 
-    <section>
-        <!-- system -->
+    <section> <!-- system -->
         <script type="module" src="./system/uri_test.js"></script>
         <script type="module" src="./system/uris_test.js"></script>
         <script type="module" src="./system/file_test.js"></script>
         <script type="module" src="./system/dir_test.js"></script>
     </section>
 
-    <section>
-        <!-- text -->
+    <section> <!-- text -->
         <script type="module" src="./text/regex_test.js"></script>
         <script type="module" src="./text/char_test.js"></script>
         <script type="module" src="./text/string_test.js"></script>
         <script type="module" src="./text/stream_test.js"></script>
     </section>
 
-    <section>
-        <!-- math -->
+    <section> <!-- math -->
         <script type="module" src="./math/number_test.js"></script>
         <script type="module" src="./math/vec2_test.js"></script>
         <script type="module" src="./math/vec3_test.js"></script>
@@ -76,16 +72,14 @@
         <script type="module" src="./math/mat4_test.js"></script>
     </section>
 
-    <section>
-        <!-- xml -->
+    <section> <!-- xml -->
         <script type="module" src="./xml/xnode_test.js"></script>
         <script type="module" src="./xml/xattributes_test.js"></script>
         <script type="module" src="./xml/xtext_test.js"></script>
         <script type="module" src="./xml/xdoc_test.js"></script>
     </section>
 
-    <section>
-        <!-- gui -->
+    <section> <!-- gui -->
         <script type="module" src="./gui/point_test.js"></script>
         <script type="module" src="./gui/size_test.js"></script>
         <script type="module" src="./gui/line_test.js"></script>
@@ -97,16 +91,14 @@
         <!--
         <script type="module" src="./gui/image_test.js"></script>
         <script type="module" src="./gui/polygon_test.js"></script>
--->
+        -->
     </section>
 
-    <section>
-        <!-- Rendering -->
+    <section> <!-- Rendering -->
         <script type="module" src="./rendering/contex2d_test.js"></script>
     </section>
 
-    <section>
-        <!-- source -->
+    <section> <!-- source -->
         <script type="module" src="./source/location_test.js"></script>
         <script type="module" src="./source/message_test.js"></script>
         <script type="module" src="./source/token_test.js"></script>
@@ -117,57 +109,47 @@
         <script type="module" src="./source/function_test.js"></script>
         <script type="module" src="./source/options_test.js"></script>
         <script type="module" src="./source/source_test.js"></script>
-    </section>
 
-    <section>
-        <!-- preprocessor -->
-        <script type="module" src="./source/preprocessor/macro_test.js"></script>
-        <script type="module" src="./source/preprocessor/process_test.js"></script>
-    </section>
+        <section> <!-- preprocessor -->
+            <script type="module" src="./source/preprocessor/macro_test.js"></script>
+            <script type="module" src="./source/preprocessor/process_test.js"></script>
+        </section>
 
-    <section>
-        <!-- lsl 
-        <script type="module" src="./editor/lsl/lsl_literal_test.js"></script>
--->
-    </section>
+        <section> <!-- parser -->
 
-    <section>
-        <!-- ll type 
-        <script type="module" src="./editor/lsl/llint_test.js"></script>
-        <script type="module" src="./editor/lsl/llfloat_test.js"></script>
-        <script type="module" src="./editor/lsl/llstr_test.js"></script>
-        <script type="module" src="./editor/lsl/llkey_test.js"></script>
-        <script type="module" src="./editor/lsl/llvec_test.js"></script>
-        <script type="module" src="./editor/lsl/llquat_test.js"></script>
-        <script type="module" src="./editor/lsl/lllist_test.js"></script>
--->
-    </section>
+            <section> <!-- lsl -->
+                <script type="module" src="./source/parser/lsl/llspec_test.js"></script>
 
-    <section>
-        <!-- ll script 
-        <script type="module" src="./editor/lsl/variable_test.js"></script>
-        <script type="module" src="./editor/lsl/state_test.js"></script>
-        <script type="module" src="./editor/lsl/label_test.js"></script>
-        <script type="module" src="./editor/lsl/user_func_test.js"></script>
-        <script type="module" src="./editor/lsl/script_test.js"></script>
--->
-    </section>
+                <script type="module" src="./source/parser/lsl/translate_test.js"></script>
 
-    <section>
-        <!-- ll script 
-        <script type="module" src="./editor/lsl/llop_test.js"></script>
-        <script type="module" src="./editor/lsl/llfunc_test.js"></script>
-        <script type="module" src="./editor/lsl/llobj_test.js"></script>
--->
-    </section>
+                <script type="module" src="./source/parser/lsl/component_test.js"></script>
+                <script type="module" src="./source/parser/lsl/llvar_test.js"></script>
+                <script type="module" src="./source/parser/lsl/lludf_test.js"></script>
+                <script type="module" src="./source/parser/lsl/llstate_test.js"></script>
+                <script type="module" src="./source/parser/lsl/lllabel_test.js"></script>
+                <script type="module" src="./source/parser/lsl/script_test.js"></script>
+                <script type="module" src="./source/parser/lsl/llliteral_test.js"></script>
 
-    <section>
-        <!-- ll parsing 
-         <script type="module" src="./editor/lsl/translate_test.js"></script>
-        <script type="module" src="./editor/lsl/parsing_test.js"></script>
-        <script type="module" src="./editor/lsl/optimizing_test.js"></script>
-        <script type="module" src="./editor/lsl/formater_test.js"></script>
-    -->
+                <script type="module" src="./source/parser/lsl/parsing_test.js"></script>
+                
+                <script type="module" src="./source/parser/lsl/llint_test.js"></script>
+                <script type="module" src="./source/parser/lsl/llfloat_test.js"></script>
+                <script type="module" src="./source/parser/lsl/llstr_test.js"></script>
+                <script type="module" src="./source/parser/lsl/llkey_test.js"></script>
+                <script type="module" src="./source/parser/lsl/llvec_test.js"></script>
+                <script type="module" src="./source/parser/lsl/llquat_test.js"></script>
+                <script type="module" src="./source/parser/lsl/lllist_test.js"></script>
+
+                <script type="module" src="./source/parser/lsl/llop_test.js"></script>
+                <script type="module" src="./source/parser/lsl/llfunc_test.js"></script>
+                <script type="module" src="./source/parser/lsl/llobj_test.js"></script>
+
+                <!-- <script type="module" src="./editor/lsl/optimizing_test.js"></script> -->
+
+                <!-- <script type="module" src="./editor/lsl/formater_test.js"></script> -->
+                
+            </section>
+        </section>
     </section>
 
     <section>

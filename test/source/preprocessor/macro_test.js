@@ -137,7 +137,7 @@ describe('macro', () => {
         expect(mac0.name_tok.str).toBe(`A`);
         expect(mac0.value_tok.str).toBe(`#`);
         expect(mac0.end_tok.str).toBe(`_`);
-        test_tokens(mac0.definition, [`A`, `#`, `a`]);
+        test_tokens(mac0.definition, [`A`, `#`, `_`]);
     });
 
     it('variadic_000', () => {

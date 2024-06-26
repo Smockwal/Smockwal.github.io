@@ -333,6 +333,7 @@ describe("eval_token function", () => {
         expect(eval_token("+")).toBe(flag.SYMBOL_FLAG);
         expect(eval_token("==")).toBe(flag.SYMBOL_FLAG);
         expect(eval_token("!")).toBe(flag.SYMBOL_FLAG);
+        expect(eval_token("@")).toBe(flag.SYMBOL_FLAG);
     });
 
     it("should identify a string token", () => {

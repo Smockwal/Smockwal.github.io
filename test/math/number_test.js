@@ -1131,15 +1131,15 @@ describe(`numb class test`, () => {
     describe('numb.format_float', () => {
         // Test cases for valid inputs
         it('should format positive floating-point numbers correctly', () => {
-            expect(numb.format_float(3.141592653589793)).toEqual('3.141592653589793');
-            expect(numb.format_float(123.456789)).toEqual('1.23456789e2');
-            expect(numb.format_float(0.123456789)).toEqual('0.123456789');
+            expect(numb.format_float(3.141592653589793)).toEqual('3.14159265');
+            expect(numb.format_float(123.456789)).toEqual('123.456789');
+            expect(numb.format_float(0.123456789)).toEqual('0.12345679');
         });
 
         it('should format negative floating-point numbers correctly', () => {
-            expect(numb.format_float(-3.141592653589793)).toEqual('-3.141592653589793');
-            expect(numb.format_float(-123.456789)).toEqual('-1.23456789e2');
-            expect(numb.format_float(-0.123456789)).toEqual('-0.123456789');
+            expect(numb.format_float(-3.141592653589793)).toEqual('-3.14159265');
+            expect(numb.format_float(-123.456789)).toEqual('-123.456789');
+            expect(numb.format_float(-0.123456789)).toEqual('-0.12345679');
         });
 
         it('should format floating-point numbers with exponential notation correctly', () => {

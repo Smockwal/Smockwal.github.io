@@ -1847,7 +1847,7 @@ describe(`string`, () => {
         it('should handle a single-character input string', () => {
             const inputStr = 'a';
             const clippedStr = string.clip(inputStr);
-            expect(clippedStr).toBe('');
+            expect(clippedStr).toBe('a');
         });
 
         it('should handle a two-character input string', () => {

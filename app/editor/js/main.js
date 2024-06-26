@@ -2,6 +2,11 @@
 import { clear_element, elem, ev, new_node, new_text } from '../../../lib/html.js';
 import { message } from '../../../lib/source/message.js';
 import { options, opts } from '../../../lib/source/options.js';
+import { formatter } from '../../../lib/source/parser/lsl/formater.js';
+import { load_spec } from '../../../lib/source/parser/lsl/llspec.js';
+import { optimizing } from '../../../lib/source/parser/lsl/optimizing.js';
+import { parsing } from '../../../lib/source/parser/lsl/parsing.js';
+import { convert_to_lsl } from '../../../lib/source/parser/lsl/translate.js';
 import { macro, macros } from '../../../lib/source/preprocessor/macro.js';
 import { clear_prepro, preprocessing } from '../../../lib/source/preprocessor/preprocess.js';
 import { tokens } from '../../../lib/source/tokens.js';
@@ -24,7 +29,7 @@ const DO_PARSING = (0x1 << 2);
 const DO_OPTIMIZE = (0x1 << 3);
 const DO_FORMATE = (0x1 << 4);
 const DO_ALL = (DO_PREPRO | DO_TRANSLATE | DO_PARSING | DO_OPTIMIZE | DO_FORMATE);
-const MAX_RELEASES = DO_PREPRO;
+const MAX_RELEASES = DO_ALL;
 
 
 const win_close_menus = async e => {
@@ -68,9 +73,9 @@ const do_prepro = async src_toks => {
     }
 
     if (options.get(`translate`, `lang`) == 1) {
-        const h = await read_file(`./include/lsl/constants.hls`);
+        const h = await file.load_text(`./include/lsl/constants.hls`);
         if (processor_msg()) return undefined;
-        sources.push(h);
+        sources.push(new tokens(h, `constants.hls`));
     }
 
     sources.push(src_toks);
@@ -102,17 +107,17 @@ const execute = async flag => {
 
     if (options.get(`translate`, `lang`) == 1) {
 
+        await load_spec(`../.../../../lib/source/parser/lsl/lsl_data.json`);
+
         ////////////////////////////////////////////////////////////////
         // convert
         ////////////////////////////////////////////////////////////////
-
         if (flag & DO_TRANSLATE) {
             await convert_to_lsl(src_toks);
             if (processor_msg()) return console.trace(src_toks);
+            elem("translate").value = src_toks.str;
+            elem("translate_tab_btn").click();
         }
-
-        elem("translate").value = src_toks.str;
-        elem("translate_tab_btn").click();
 
         ////////////////////////////////////////////////////////////////
         // parsing
@@ -120,22 +125,19 @@ const execute = async flag => {
         if (flag & DO_PARSING) {
             await parsing(src_toks);
             if (processor_msg()) return console.trace(src_toks);
+            elem("parser").value = src_toks.str;
+            elem("parser_tab_btn").click();
         }
-
-        elem("parser").value = src_toks.str;
-        elem("parser_tab_btn").click();
 
         ////////////////////////////////////////////////////////////////
         // optimizing
         ////////////////////////////////////////////////////////////////
-
         if (options.get(`optimize`, `active`) && flag & DO_OPTIMIZE) {
             await optimizing(src_toks);
             if (processor_msg()) return console.trace(src_toks);
+            elem("optimizer").value = src_toks.str;
+            elem("optimizer_tab_btn").click();
         }
-
-        elem("optimizer").value = src_toks.str;
-        elem("optimizer_tab_btn").click();
 
         ////////////////////////////////////////////////////////////////
         // format
@@ -143,10 +145,9 @@ const execute = async flag => {
         if (options.get(opts.FORMATTER, `active`) && flag & DO_FORMATE) {
             src_toks = await formatter(src_toks);
             if (processor_msg()) return console.trace(src_toks);
+            elem("formatter").value = src_toks;
+            elem("formatter_tab_btn").click();
         }
-        
-        elem("formatter").value = src_toks;
-        elem("formatter_tab_btn").click();
     }
 
     do_print_msg();
@@ -462,9 +463,9 @@ ev(window, `DOMContentLoaded`, async () => {
         top_menu_ids.push(el.id);
 
     options.set(opts.PREPRO, `active`, true);
-    options.set(`parser`, `active`, false);
-    options.set(`optimize`, `active`, false);
-    options.set(opts.FORMATTER, `active`, false);
+    options.set(`parser`, `active`, true);
+    options.set(`optimize`, `active`, true);
+    options.set(opts.FORMATTER, `active`, true);
 
     options.set(opts.PREPRO, `__AGENT_ID__`, ``);
     options.set(opts.PREPRO, `__AGENT_NAME__`, ``);
@@ -474,7 +475,7 @@ ev(window, `DOMContentLoaded`, async () => {
     options.set(opts.PREPRO, `__MEM__`, false);
     options.set(opts.PREPRO, `extra_macro`, ``);
 
-    options.set(`translate`, `lang`, 0);
+    options.set(`translate`, `lang`, 1);
 
     options.set(`parser`, `find_code_entry`, false);
 

@@ -261,10 +261,11 @@ export const test_matg = (obj, rows, cols, numbs, dec) => {
 
 /**
  * Tests if the given object contains tokens and checks their properties.
- * @param {Object} obj - The object containing tokens.
+ * @param {tokens|expr} obj - The object containing tokens.
  * @param {string[]} test - An array of strings representing expected token values.
  */
 export const test_tokens = (obj, test) => {
+    expect([`tokens`, `expr`].includes(kind_of(obj))).toBeTrue();
     // Check if the object contains tokens
     if (obj.length === 0) {
         // If no tokens are present, front and back tokens should be undefined
@@ -279,32 +280,32 @@ export const test_tokens = (obj, test) => {
     // Assert that front and back tokens are defined and have correct references
     expect(obj.front).toBeDefined();
     expect(obj.back).toBeDefined();
-    expect(obj.front._prev).toBe(undefined);
-    expect(obj.back._next).toBe(undefined);
+    expect(obj.front.prev).toBe(undefined);
+    expect(obj.back.next).toBe(undefined);
 
     // Initialize variables to track previous and next tokens
     let prev = null;
     let next = null;
 
     // Iterate through the tokens and check their properties
-    for (let token = obj._first, index = 0; token && index < test.length; token = token._next, ++index) {
+    for (let it = obj.front, index = 0; it && index < test.length; it = it.next, ++index) {
         // Assert that the token's string value matches the corresponding value in the test array
-        expect(token.str).toBe(test[index]);
+        expect(it.str).toBe(test[index]);
 
         // Assert that the previous and next tokens have correct string values
-        if (token.prev) expect(token.prev.str).toBe(test[index - 1]);
-        if (token.next) expect(token.next.str).toBe(test[index + 1]);
+        if (it.prev) expect(it.prev.str).toBe(test[index - 1]);
+        if (it.next) expect(it.next.str).toBe(test[index + 1]);
 
         // Assert that the previous and next token references are correct
-        if (prev) expect(token._prev).toBe(prev);
-        if (next) expect(token).toBe(next);
+        if (prev) expect(it.prev).toBe(prev);
+        if (next) expect(it).toBe(next);
 
         // Assert that the current token is the front or back token
-        if (index === 0) expect(token).toBe(obj.front);
-        else if (index === test.length - 1) expect(token).toBe(obj.back);
+        if (index === 0) expect(it.is(obj.front)).toBeTrue();
+        else if (index === test.length - 1) expect(it.is(obj.back)).toBeTrue();
 
         // Update previous and next token references
-        prev = token;
-        next = token._next;
+        prev = it;
+        next = it.next;
     }
 };

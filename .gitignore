@@ -30,6 +30,8 @@
 
 /lib/widget/
 
+lib/source/parser/lsl/parsing_alt.js
+
 /test/data/
 /test/editor/
 /test/include/
