@@ -1,4 +1,5 @@
 
+import { NULL } from '../../../lib/global.js';
 import { clear_element, elem, ev, new_node, new_text } from '../../../lib/html.js';
 import { message } from '../../../lib/source/message.js';
 import { options, opts } from '../../../lib/source/options.js';
@@ -107,7 +108,7 @@ const execute = async flag => {
 
     if (options.get(`translate`, `lang`) == 1) {
 
-        await load_spec(`../.../../../lib/source/parser/lsl/lsl_data.json`);
+        await load_spec(`../../../../lib/source/parser/lsl/lsl_data.json`);
 
         ////////////////////////////////////////////////////////////////
         // convert
@@ -176,6 +177,7 @@ const file_by_path = path => {
 
 const show_file = async select => {
     options.set(opts.GENERAL, `file`, select.file_full_name);
+    //
     elem(`input`).value = await file.load_text(select.obj);
     elem("input_tab_btn").click();
 };
@@ -391,6 +393,7 @@ const open_file_act = async e => {
     const input = worker.appendChild(new_node(`input`, { id: `file_loader`, type: `file`, accept: `.lsl,.hls,.nc` }));
 
     ev(input, `change`, async e => {
+        options.set(opts.GENERAL, `folder`, NULL);
         build_files_tree(e.target.files);
         fn_build_treeview(files_tree);
         show_file(new file(e.target.files[0]));
@@ -408,6 +411,8 @@ const open_folder_act = async e => {
     input.setAttribute(`webkitdirectory`, ``);
 
     ev(input, `change`, async e => {
+        //console.log(e.target.files);
+        options.set(opts.GENERAL, `folder`, e.target.files);
         build_files_tree(e.target.files);
         fn_build_treeview(files_tree);
         elem(`files_treeview`).firstChild.setAttribute(`open`, true);
